@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kareem Mohamed — Software Engineer</title>
+<meta name="description" content="Kareem Mohamed — Software Engineer in Cairo. 4+ years building high-concurrency, offline-first, FinTech and SaaS systems.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kareem Mohamed — Software Engineer">
+<meta property="og:description" content="Reliable, scalable systems across FinTech, Mobility, E-Invoicing and Enterprise Software.">
+<meta property="og:image" content="assets/thumbnails/fentec.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2314171c'/%3E%3Ctext x='16' y='22' font-size='16' font-family='monospace' font-weight='bold' fill='%2318b957' text-anchor='middle'%3EKM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="#hero"><i>KM</i>Kareem Mohamed</a>
+    <div class="links" id="links">
+      <a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">Menu</button>
+  </div>
+  <i id="prog"></i>
+</nav>
+
+<a id="fab" class="btn" href="Kareem_Mohamed_Resume.pdf" target="_blank" rel="noopener noreferrer">▶ GET RESUME</a>
+
+<header class="hero" id="hero">
+  <div class="screen" id="screen">
+    <canvas id="cv" width="1280" height="720" aria-label="Pixel-art fight between a suited engineer and a Muay Thai fighter"></canvas>
+    <canvas id="fx" width="1280" height="720"></canvas>
+    <div class="loader" id="loader">
+      <div class="loader-t px">LOADING ASSETS...</div>
+      <div class="loader-bar"><i id="loaderFill"></i></div>
+      <div class="loader-n px" id="loaderCount">0 / 70 FRAMES (0%)</div>
+    </div>
+    <div class="ov-top px">
+      <div class="fh"><span class="hud-name">ENGINEER</span><div class="hb"><i id="he"></i></div></div>
+      <div class="mid"><div class="char-title"><b>KAREEM MOHAMED</b><small>Software Engineer &amp; Muay Thai Fighter · Cairo</small></div><div class="xp px" id="xp">XP 0</div></div>
+      <div class="fh r"><span class="hud-name">FIGHTER</span><div class="hb"><i id="hf"></i></div></div>
+    </div>
+    <button class="play" id="go" disabled aria-label="Start fight"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13-8z" fill="currentColor"/></svg></button>
+    <div class="deck">
+      <div class="deck-story">
+        <div class="round px" id="tag">READY</div>
+        <div>
+          <h2 class="story-t px" id="ct">Two sides. One person.</h2>
+          <p class="story-d" id="cp">Press play to start the fight, or click the fighters.</p>
+        </div>
+      </div>
+      <div class="deck-actions">
+        <a class="btn dark" href="#contact">HIRE ME</a>
+        <a class="btn alt" href="#projects">PROJECTS ↓</a>
+      </div>
+    </div>
+  </div>
+</header>
+<div id="toast" class="px" role="status"></div>
+
+<section id="about">
+  <div class="tag-h px">ABOUT</div>
+  <h2 class="t px">Software Engineer</h2>
+  <div class="about">
+    <div class="panel">
+      <p class="lead">Software Engineer with 4+ years of experience building reliable, scalable systems across FinTech, Mobility, Real Estate, E-Invoicing and Enterprise Software.</p>
+      <p>I’ve worked on large-scale SaaS platforms, Retail Management Systems and high-traffic applications, including a national competition platform that handled 400,000+ registrations in one week.</p>
+      <div class="stats">
+        <div class="stat"><b>4+</b><span>years in production</span></div>
+        <div class="stat"><b>400K+</b><span>registrations in one week</span></div>
+        <div class="stat"><b>3</b><span>countries delivered to</span></div>
+      </div>
+    </div>
+    <div class="side">
+      <div class="panel gold">
+        <h3 class="px">Shark Tank Australia, 2023</h3>
+        <p>I built the platform behind “On My Way Therapy” (Cross Care), which was pitched on the show.</p>
+      </div>
+      <div class="panel">
+        <h3 class="px">Education</h3>
+        <p>Bachelor’s in Languages &amp; International Communication, Higher Institute of Languages Sheraton (2021–2025). Fluent English, native Arabic.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="tag-h px">EXPERIENCE</div>
+  <h2 class="t px">Where I’ve worked</h2>
+  <div class="tl" id="timeline"></div>
+</section>
+
+<section id="projects">
+  <div class="tag-h px">PROJECTS</div>
+  <h2 class="t px">Selected work</h2>
+  <div class="filters" id="filters"></div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section id="skills">
+  <div class="tag-h px">SKILLS</div>
+  <h2 class="t px">Tools I use</h2>
+  <div class="skills" id="skillsBox"></div>
+</section>
+
+<section id="contact">
+  <div class="contact">
+    <h2 class="px">Let’s build something that lasts.</h2>
+    <p>Open to full-time roles and select contracts. Send me a message and I’ll reply within a day.</p>
+    <div class="copy"><span id="emailVal">kareem.mohamed.swd@gmail.com</span><button id="copyBtn" onclick="copyEmail()">COPY EMAIL</button></div>
+    <div class="cl">
+      <a class="btn" href="mailto:kareem.mohamed.swd@gmail.com">EMAIL ME</a>
+      <a class="btn alt" href="https://wa.me/201550552371" target="_blank" rel="noopener noreferrer">WHATSAPP</a>
+      <a class="btn alt" href="https://github.com/kareem-kairossol-io" target="_blank" rel="noopener noreferrer">GITHUB</a>
+      <a class="btn alt" href="https://linkedin.com/in/kareem-mohamed-b3b676261" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
+      <a class="btn dark" href="Kareem_Mohamed_Resume.pdf" target="_blank" rel="noopener noreferrer">RESUME PDF</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Kareem Mohamed · Software Engineer · Cairo, Egypt</footer>
+
+<div class="ov" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="mb">
+    <div class="mt"><h3 class="px" id="mTitle"></h3><button class="mx" aria-label="Close" onclick="closeModal()">X</button></div>
+    <div class="mbody">
+      <div class="gal"><button class="nv p" aria-label="Previous" onclick="step(-1)">◀</button><img id="mImg" alt=""><button class="nv n" aria-label="Next" onclick="step(1)">▶</button></div>
+      <div class="cap"><div id="mCap"></div><span id="mCount"></span></div>
+      <div class="md" id="mDetails"></div>
+    </div>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
