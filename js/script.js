@@ -88,17 +88,22 @@
     }
   }
 
+  var lastE = -1, lastF = -1;
   function bars(i) {
     var e = i < 44 ? 100 : i < 49 ? 90 : i < 51 ? 80 : 100,
       f = i < 36 ? 100 : i < 44 ? 75 : i < 49 ? 50 : i < 55 ? 20 : 100;
-    [
-      ['he', e],
-      ['hf', f]
-    ].forEach(function (b) {
-      var el = $(b[0]);
-      el.style.width = b[1] + '%';
-      el.style.background = b[1] < 40 ? '#e23b3b' : b[1] < 75 ? '#f5b700' : '#18b957';
-    });
+    if (e !== lastE) {
+      var elE = $('he');
+      elE.style.width = e + '%';
+      elE.style.background = e < 40 ? '#e23b3b' : e < 75 ? '#f5b700' : '#18b957';
+      lastE = e;
+    }
+    if (f !== lastF) {
+      var elF = $('hf');
+      elF.style.width = f + '%';
+      elF.style.background = f < 40 ? '#e23b3b' : f < 75 ? '#f5b700' : '#18b957';
+      lastF = f;
+    }
   }
 
   function spawn(n, o) {
@@ -130,12 +135,16 @@
     }
   }
 
+  var lastFrame = -1;
   function draw(i) {
     if (!I[i] || !I[i].complete) return;
-    x.clearRect(0, 0, 1280, 720);
-    x.drawImage(I[i], 0, 0, 1280, 720);
-    cap(i);
-    bars(i);
+    if (i !== lastFrame || st === 'play') {
+      x.clearRect(0, 0, 1280, 720);
+      x.drawImage(I[i], 0, 0, 1280, 720);
+      cap(i);
+      bars(i);
+      lastFrame = i;
+    }
     if (st === 'play') fxFor(i);
   }
 
@@ -169,8 +178,11 @@
     updateBtn();
   };
 
+  var heroVisible = true;
+  var fxNeedsClear = false;
+
   function tick(t) {
-    if (ready) {
+    if (ready && heroVisible) {
       var f = 0;
       if (st === 'idle') {
         f = Math.floor(t / 260) % 8;
@@ -192,21 +204,28 @@
         ci = f;
       }
       draw(f);
+
+      if (P.length > 0) {
+        fx.clearRect(0, 0, 1280, 720);
+        fx.font = 'bold 24px monospace';
+        P = P.filter(function (p) {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.08;
+          p.l -= 0.02;
+          if (p.l <= 0) return false;
+          fx.globalAlpha = p.l;
+          fx.fillStyle = p.c;
+          if (p.t) fx.fillText(p.t, p.x, p.y);
+          else fx.fillRect(p.x, p.y, 7, 7);
+          return true;
+        });
+        fxNeedsClear = true;
+      } else if (fxNeedsClear) {
+        fx.clearRect(0, 0, 1280, 720);
+        fxNeedsClear = false;
+      }
     }
-    fx.clearRect(0, 0, 1280, 720);
-    fx.font = 'bold 24px monospace';
-    P = P.filter(function (p) {
-      p.x += p.vx;
-      p.y += p.vy;
-      p.vy += 0.08;
-      p.l -= 0.02;
-      if (p.l <= 0) return false;
-      fx.globalAlpha = p.l;
-      fx.fillStyle = p.c;
-      if (p.t) fx.fillText(p.t, p.x, p.y);
-      else fx.fillRect(p.x, p.y, 7, 7);
-      return true;
-    });
     requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
@@ -279,9 +298,13 @@
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(
       function (en) {
-        $('fab').classList.toggle('show', !en[0].isIntersecting);
+        heroVisible = en[0].isIntersecting;
+        $('fab').classList.toggle('show', !heroVisible);
+        if (heroVisible) {
+          lastFrame = -1;
+        }
       },
-      { threshold: 0.35 }
+      { threshold: 0.1 }
     ).observe($('hero'));
   } else {
     $('fab').classList.add('show');
@@ -437,7 +460,7 @@
       n: 'GS POS (Fawry & ETA)',
       cat: 'FinTech',
       role: 'Cyrus Technology · Android POS',
-      img: 'assets/projects/gs/1.png',
+      img: 'assets/thumbnails/ums-podcast.png',
       sum: 'Android POS for PAX terminals with Fawry payments and e-invoice submission to the Egyptian Tax Authority.',
       tags: ['React Native', 'Fawry SDK', 'ETA', 'PAX'],
       scr: [
@@ -817,13 +840,22 @@
   };
 
   var prog = $('prog');
-  function onScroll() {
+  var scrollScheduled = false;
+  function updateScrollProgress() {
     var h = document.documentElement,
       m = h.scrollHeight - h.clientHeight;
-    prog.style.width = (m > 0 ? (h.scrollTop / m) * 100 : 0) + '%';
+    var ratio = m > 0 ? h.scrollTop / m : 0;
+    prog.style.transform = 'scaleX(' + Math.min(Math.max(ratio, 0), 1) + ')';
+    scrollScheduled = false;
+  }
+  function onScroll() {
+    if (!scrollScheduled) {
+      scrollScheduled = true;
+      requestAnimationFrame(updateScrollProgress);
+    }
   }
   window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  updateScrollProgress();
 
   if (hasIO) {
     var spy = {};
