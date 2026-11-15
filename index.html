@@ -32,20 +32,22 @@
 <a id="fab" class="btn" href="Kareem_Mohamed_Resume.pdf" target="_blank" rel="noopener noreferrer">▶ GET RESUME</a>
 
 <header class="hero" id="hero">
-  <div class="screen" id="screen">
-    <canvas id="cv" width="1280" height="720" aria-label="Pixel-art fight between a suited engineer and a Muay Thai fighter"></canvas>
-    <canvas id="fx" width="1280" height="720"></canvas>
-    <div class="loader" id="loader">
-      <div class="loader-t px">LOADING ASSETS...</div>
-      <div class="loader-bar"><i id="loaderFill"></i></div>
-      <div class="loader-n px" id="loaderCount">0 / 70 FRAMES (0%)</div>
+  <div class="stage">
+    <div class="screen" id="screen">
+      <canvas id="cv" width="1280" height="720" aria-label="Pixel-art fight between a suited engineer and a Muay Thai fighter"></canvas>
+      <canvas id="fx" width="1280" height="720"></canvas>
+      <div class="loader" id="loader">
+        <div class="loader-t px">LOADING ASSETS...</div>
+        <div class="loader-bar"><i id="loaderFill"></i></div>
+        <div class="loader-n px" id="loaderCount">0 / 70 FRAMES (0%)</div>
+      </div>
+      <div class="ov-top px">
+        <div class="fh"><span class="hud-name">ENGINEER</span><div class="hb"><i id="he"></i></div></div>
+        <div class="mid"><div class="char-title"><b>KAREEM MOHAMED</b><small>Software Engineer &amp; Muay Thai Fighter · Cairo</small></div><div class="xp px" id="xp">XP 0</div></div>
+        <div class="fh r"><span class="hud-name">FIGHTER</span><div class="hb"><i id="hf"></i></div></div>
+      </div>
+      <button class="play" id="go" disabled aria-label="Start fight"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13-8z" fill="currentColor"/></svg></button>
     </div>
-    <div class="ov-top px">
-      <div class="fh"><span class="hud-name">ENGINEER</span><div class="hb"><i id="he"></i></div></div>
-      <div class="mid"><div class="char-title"><b>KAREEM MOHAMED</b><small>Software Engineer &amp; Muay Thai Fighter · Cairo</small></div><div class="xp px" id="xp">XP 0</div></div>
-      <div class="fh r"><span class="hud-name">FIGHTER</span><div class="hb"><i id="hf"></i></div></div>
-    </div>
-    <button class="play" id="go" disabled aria-label="Start fight"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13-8z" fill="currentColor"/></svg></button>
     <div class="deck">
       <div class="deck-story">
         <div class="round px" id="tag">READY</div>
@@ -64,28 +66,24 @@
 <div id="toast" class="px" role="status"></div>
 
 <section id="about">
-  <div class="tag-h px">ABOUT</div>
-  <h2 class="t px">Software Engineer</h2>
-  <div class="about">
-    <div class="panel">
-      <p class="lead">Software Engineer with 4+ years of experience building reliable, scalable systems across FinTech, Mobility, Real Estate, E-Invoicing and Enterprise Software.</p>
-      <p>I’ve worked on large-scale SaaS platforms, Retail Management Systems and high-traffic applications, including a national competition platform that handled 400,000+ registrations in one week.</p>
-      <div class="stats">
-        <div class="stat"><b>4+</b><span>years in production</span></div>
-        <div class="stat"><b>400K+</b><span>registrations in one week</span></div>
-        <div class="stat"><b>3</b><span>countries delivered to</span></div>
+  <div class="tag-h px">ABOUT ME</div>
+  <h2 class="t px">A little about me.</h2>
+  <div class="about-card panel">
+    <div class="about-main">
+      <p class="about-lead">I'm Kareem, a Software Engineer based in Cairo, Egypt.</p>
+      <div class="about-body">
+        <p>I build software applications and solutions, focusing on turning ideas and business requirements into practical, well-structured products. I enjoy working across different areas of software development, exploring new technologies, and solving problems through code.</p>
+        <p>Over the past few years, I've been working on building web applications and software solutions across different industries, constantly learning and exploring new technologies.</p>
       </div>
     </div>
-    <div class="side">
-      <div class="panel gold">
-        <h3 class="px">Shark Tank Australia, 2023</h3>
-        <p>I built the platform behind “On My Way Therapy” (Cross Care), which was pitched on the show.</p>
+    <aside class="about-aside">
+      <div class="about-edu">
+        <span class="edu-label px">EDUCATION</span>
+        <h3 class="edu-school">Higher Institute of Languages, Sheraton</h3>
+        <p class="edu-field">Bachelor of Arts in English Literature</p>
+        <span class="edu-year">2021–2025</span>
       </div>
-      <div class="panel">
-        <h3 class="px">Education</h3>
-        <p>Bachelor’s in Languages &amp; International Communication, Higher Institute of Languages Sheraton (2021–2025). Fluent English, native Arabic.</p>
-      </div>
-    </div>
+    </aside>
   </div>
 </section>
 

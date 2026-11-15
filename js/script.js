@@ -320,44 +320,38 @@
       type: 'Full-time',
       when: 'Mar 2024 – Present',
       now: 1,
+      desc: 'Contributed to building enterprise B2B solutions across FinTech, Retail Management, E-Invoicing, and Multi-Tenant SaaS platforms.',
       pts: [
-        'Led an offline-first retail system (Electron POS) that keeps selling without internet and syncs through RabbitMQ.',
-        'Integrated the Fawry POS SDK on Android PAX terminals; passed certification on the first submission.',
-        'Moved a legacy WinForms e-invoicing app to WPF/MVVM and helped migrate the ETA platform to multi-tenant SaaS.'
-      ],
-      st: ['Java', 'Spring Boot', 'Laravel', 'React', 'Electron', 'RabbitMQ', 'SQL Server']
+        '<b>Offline-First RMS:</b> Led the development of an offline-first Retail Management System, implementing data synchronization, state management, logging, and backup mechanisms.',
+        '<b>Fawry Payment Integration:</b> Integrated the Fawry POS Payment SDK, delivering secure payment workflows, handling transaction edge cases, and passing production certification on the first submission.',
+        '<b>Legacy WinForms Modernization:</b> Led the refactoring and migration of a legacy WinForms E-Invoicing application to a modern WPF MVVM architecture, improving maintainability, scalability, performance, and user experience.',
+        '<b>ETA Multi-Tenant Migration:</b> Contributed to transitioning the Egyptian Tax Authority (ETA) e-invoicing platform to multi-tenant SaaS through architectural ideation, UX improvements, and frontend development.'
+      ]
     },
     {
-      r: 'Back End Developer',
+      r: 'Full-Stack Developer',
       co: 'United Media Services (via Clicks Egypt Outsource) · Cairo',
       type: 'Full-time',
       when: 'Feb 2022 – Jan 2024',
+      desc: 'Built mission-critical full-stack platforms and systems for United Media Services (UMS), delivering government initiatives, national competitions, event management platforms, charity organizations, and e-learning systems serving hundreds of thousands of users.',
       pts: [
-        'Built the backend for Dawlet El Telawa: 400K+ registrations in one week, protected by hCaptcha, rate limits and device fingerprinting.',
-        'Powered Al-Alamein Festival for two seasons and built the Resala donation platform, UMA Academy and media portals.'
-      ],
-      st: ['Laravel', 'REST APIs', 'Redis', 'Queues', 'Anti-abuse']
-    },
-    {
-      r: 'Full-Stack Engineer & PM',
-      co: 'Cross Care · Australia (remote)',
-      type: 'Freelance',
-      when: 'Sep 2022 – May 2023',
-      pts: [
-        'Built “On My Way Therapy”, an NDIS therapy management platform, and managed delivery with a remote team.'
-      ],
-      st: ['Full-stack', 'Project management']
+        '<b>Dawlet El Telawa:</b> Engineered the platform for a high-traffic national competition, handling 400,000+ registrations within one week while implementing fraud prevention, secure voting, and rate limiting.',
+        '<b>Alamein Festival:</b> Developed full-stack services and operational portals for a large-scale national event management platform, supporting operations across two consecutive festival seasons.',
+        '<b>Resala Platform:</b> Contributed to large-scale charity systems with FinTech integrations, supporting donation and operational workflows.',
+        '<b>Media & Learning Platforms:</b> Delivered full-stack web applications and services for UMA E-Learning, UMS Podcast, and additional media platforms with a focus on performance, availability, and maintainability.'
+      ]
     },
     {
       r: 'Sole Engineer',
       co: 'Fentec Mobility · Algeria',
       type: 'Freelance',
       when: '2022 – 2023',
+      desc: 'Architected and built the entire e-scooter mobility platform single-handedly from inception to launch, delivering customer mobile apps, IoT backend services, merchant point-of-sale apps, and internal fleet management & accounting panels.',
       pts: [
-        'Built the full e-scooter platform alone: rider apps, fleet dashboard and IoT controller integration.',
-        'Designed a cash-to-digital wallet network with kiosk seller apps, plus geofencing.'
-      ],
-      st: ['React Native', 'Laravel Octane', 'Redis', 'IoT', 'Google Maps']
+        '<b>Full-Stack & Mobile Ownership:</b> Solely developed the entire software ecosystem: cross-platform rider apps (trip booking & unlock), high-throughput backend services, merchant POS applications, and administrative control panels.',
+        '<b>IoT & Geospatial Architecture:</b> Engineered real-time scooter telemetry and hardware control (lock/unlock), integrating Google Maps for dynamic multi-zone geofencing (green, orange, red zones) with ride verification.',
+        '<b>Market-Adapted FinTech:</b> Solved cash-heavy market constraints by engineering a closed-loop cash-to-digital wallet network, enabling local retail merchants to verify identities and sell ride credits via dedicated POS apps.'
+      ]
     }
   ];
 
@@ -375,19 +369,15 @@
       (j.now ? ' g' : '') +
       '">' +
       j.type +
-      '</span></div></div><ul>' +
+      '</span></div></div>' +
+      (j.desc ? '<p class="job-desc">' + j.desc + '</p>' : '') +
+      '<ul>' +
       j.pts
         .map(function (p) {
           return '<li>' + p + '</li>';
         })
         .join('') +
-      '</ul><div class="chips">' +
-      j.st
-        .map(function (s) {
-          return '<span class="chip">' + s + '</span>';
-        })
-        .join('') +
-      '</div></article>'
+      '</ul></article>'
     );
   }).join('');
 
@@ -460,7 +450,7 @@
       n: 'GS POS (Fawry & ETA)',
       cat: 'FinTech',
       role: 'Cyrus Technology · Android POS',
-      img: 'assets/thumbnails/ums-podcast.png',
+      img: 'assets/thumbnails/eysalak.png',
       sum: 'Android POS for PAX terminals with Fawry payments and e-invoice submission to the Egyptian Tax Authority.',
       tags: ['React Native', 'Fawry SDK', 'ETA', 'PAX'],
       scr: [
@@ -477,7 +467,7 @@
       n: 'InstaSports',
       cat: 'Enterprise',
       role: 'UMS-backed · Backend',
-      img: 'assets/projects/instasports/1.png',
+      img: 'assets/thumbnails/matchpass.png',
       sum: 'Sports ticketing with stadium seat maps, tiered pricing and full audit logs.',
       tags: ['Laravel', 'React', 'RBAC', 'Audit logs'],
       scr: [
@@ -524,7 +514,7 @@
       n: 'Drop Shipping Tracker',
       cat: 'SaaS',
       role: 'UK client · Backend',
-      img: 'assets/projects/dropshiping/1.png',
+      img: 'assets/thumbnails/dropshiping.png',
       sum: 'Tracks Amazon UK and Costco stock and prices for eBay sellers and alerts agents instantly.',
       tags: ['Laravel Octane', 'Reverb', 'Scraping'],
       scr: [
@@ -546,17 +536,24 @@
       d: 'Payment gateway integration, recurring donations and automatic receipts, built to handle traffic spikes during national campaigns.'
     },
     watchit: {
-      n: 'WatchIT & UMS Podcast',
+      n: 'WatchIT Script Portal',
       cat: 'Media & Edu',
       role: 'United Media Services · Backend',
       img: 'assets/thumbnails/watchit.png',
-      sum: 'Script evaluation workflow for WatchIT and a content platform for the UMS Podcast.',
-      tags: ['Laravel', 'RBAC', 'REST API'],
-      scr: [
-        ['assets/thumbnails/watchit.png', 'WatchIT script portal'],
-        ['assets/thumbnails/ums-podcast.png', 'UMS Podcast']
-      ],
-      d: 'Role-based document management for original productions and audio content management.'
+      sum: 'Role-based script evaluation and workflow platform for WatchIT original productions.',
+      tags: ['Laravel', 'RBAC', 'Document Management', 'REST API'],
+      scr: [['assets/thumbnails/watchit.png', 'WatchIT script evaluation portal']],
+      d: 'Engineered a role-based script evaluation and management platform for WatchIT original productions, allowing creative teams, directors, and executives to submit, annotate, review, and approve scripts securely.'
+    },
+    podcast: {
+      n: 'UMS Podcast',
+      cat: 'Media & Edu',
+      role: 'United Media Services · Backend',
+      img: 'assets/thumbnails/ums-podcast.png',
+      sum: 'Digital media and audio content platform powering the United Media Services podcast network.',
+      tags: ['Laravel', 'REST API', 'Audio Streaming', 'CMS'],
+      scr: [['assets/thumbnails/ums-podcast.png', 'UMS Podcast platform']],
+      d: 'Developed backend services, content management workflows, and high-availability media distribution for the UMS Podcast network.'
     }
   };
 

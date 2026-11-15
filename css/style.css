@@ -40,7 +40,7 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper);
+  background: #f9f9f7;
   color: var(--ink);
   font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   overflow-x: hidden;
@@ -272,7 +272,7 @@ nav {
   overflow: hidden;
 }
 
-.screen {
+.stage {
   position: relative;
   width: 100%;
   max-width: min(1280px, calc((100dvh - 80px) * 16 / 9));
@@ -280,6 +280,15 @@ nav {
   border: 4px solid var(--ink);
   box-shadow: var(--sl);
   background: #dedede;
+  overflow: hidden;
+  line-height: 0;
+  transform: translateZ(0);
+}
+
+.screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   line-height: 0;
   transform: translateZ(0);
@@ -706,15 +715,8 @@ h2.t {
 }
 
 /* ==========================================================================
-   About Section
+   About Section (Editorial Redesign)
    ========================================================================== */
-.about {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 28px;
-  align-items: start;
-}
-
 .panel {
   background: #fff;
   border: var(--b);
@@ -728,75 +730,98 @@ h2.t {
   box-shadow: var(--sl);
 }
 
-.lead {
-  font-size: clamp(18px, 2vw, 21px);
-  line-height: 1.55;
-  font-weight: 600;
-  margin: 0 0 14px;
-}
-
 .panel p {
   margin: 0;
   color: var(--ink2);
 }
 
-.stats {
+.about-card {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-top: 24px;
+  grid-template-columns: 1fr 280px;
+  gap: clamp(32px, 4.5vw, 56px);
+  padding: clamp(32px, 4.5vw, 52px);
+  align-items: start;
 }
 
-.stat {
-  border: 2px solid var(--ink);
-  box-shadow: 2px 2px 0 var(--ink);
-  padding: 12px;
-  background: var(--soft);
-  transition: transform 0.15s, box-shadow 0.15s;
+.about-main {
+  min-width: 0;
 }
 
-.stat:hover {
-  transform: translate(-2px, -2px) rotate(-1deg);
-  box-shadow: 4px 4px 0 var(--ink);
+.about-lead {
+  font-size: clamp(19px, 2.2vw, 23px);
+  line-height: 1.5;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 20px;
+  letter-spacing: -0.2px;
 }
 
-.stat b {
-  display: block;
-  font: 15px "Press Start 2P", monospace;
-  color: var(--green);
-  -webkit-text-stroke: 0.5px var(--ink);
+.about-body p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--ink2);
+  margin: 0 0 16px;
 }
 
-.stat span {
-  font-size: 13px;
-  color: var(--mut);
-  display: block;
-  margin-top: 8px;
-  line-height: 1.35;
+.about-body p:last-child {
+  margin-bottom: 0;
 }
 
-.side {
+.about-aside {
+  border-left: 1.5px solid var(--ink);
+  padding-left: clamp(24px, 3.5vw, 40px);
+  align-self: stretch;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  justify-content: flex-start;
 }
 
-.side .panel {
-  padding: 22px;
+.about-edu {
+  display: flex;
+  flex-direction: column;
 }
 
-.side h3 {
-  margin: 0 0 8px;
-  font-size: 11px;
+.edu-label {
+  font-size: 8px;
+  color: var(--green);
+  background: var(--ink);
+  padding: 4px 8px;
+  align-self: flex-start;
+  margin-bottom: 14px;
+  box-shadow: 2px 2px 0 var(--green);
+  letter-spacing: 0.5px;
 }
 
-.side .gold {
-  border-color: var(--gold);
-  box-shadow: 5px 5px 0 var(--gold);
+.edu-school {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.45;
+  margin: 0 0 6px;
 }
 
-.side .gold:hover {
-  box-shadow: 8px 8px 0 var(--gold);
+.edu-field {
+  font-size: 14px;
+  color: var(--mut);
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+
+.edu-year {
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  color: var(--ink2);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.edu-year::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--green);
 }
 
 /* ==========================================================================
@@ -884,8 +909,15 @@ h2.t {
   margin-top: 8px;
 }
 
+.job-desc {
+  margin: 10px 0 6px;
+  color: var(--ink2);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
 .job ul {
-  margin: 10px 0 14px;
+  margin: 10px 0 0;
   padding-left: 18px;
   color: var(--ink2);
 }
@@ -1277,8 +1309,16 @@ footer {
    Responsive Media Queries
    ========================================================================== */
 @media (max-width: 960px) {
-  .about {
+  .about-card {
     grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 28px 22px;
+  }
+  .about-aside {
+    border-left: none;
+    border-top: 1.5px solid var(--ink);
+    padding-left: 0;
+    padding-top: 24px;
   }
   .deck {
     flex-direction: column;
@@ -1295,6 +1335,7 @@ footer {
 }
 
 @media (max-width: 768px) {
+  /* Navigation */
   .menu-btn {
     display: block;
   }
@@ -1315,33 +1356,414 @@ footer {
   }
   .links a {
     padding: 12px 4px;
+    font-size: 10px;
+  }
+
+  /* Hero Section: height auto on mobile, padding-top creates breathing room above fighters */
+  .hero {
+    height: auto;
+    min-height: auto;
+    padding: 16px 14px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  .stage {
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: auto;
+    border: 3px solid var(--ink);
+    box-shadow: var(--s);
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .screen {
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    padding-top: 42px;
+    border: none;
+    border-bottom: 3px solid var(--ink);
+    background: #f9f9f7;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  canvas#cv {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    display: block;
+  }
+  canvas#fx {
+    position: absolute;
+    top: 42px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: calc(100% - 42px);
+    pointer-events: none;
+  }
+
+  /* Hero Top HUD */
+  .ov-top {
+    position: absolute;
+    top: 6px;
+    left: 0;
+    right: 0;
+    padding: 0 8px;
+    gap: 6px;
+    align-items: center;
+  }
+  .fh .hud-name {
+    font-size: 7px;
+    padding: 2px 4px;
+  }
+  .hb {
+    height: 10px;
+    border-width: 1.5px;
+    box-shadow: 1px 1px 0 var(--ink);
+  }
+  .mid {
+    gap: 3px;
+  }
+  .char-title {
+    padding: 2px 6px;
+    border-width: 1.5px;
+    box-shadow: 1.5px 1.5px 0 var(--ink);
+  }
+  .char-title b {
+    font-size: 8px;
+    line-height: 1.2;
   }
   .char-title small {
     display: none;
   }
-  .btn {
-    font-size: 8px;
-    padding: 7px 10px;
+  .mid .xp {
+    font-size: 7px;
+    padding: 1px 5px;
+    box-shadow: 1.5px 1.5px 0 var(--green);
+  }
+
+  /* Hero Play Button */
+  .play {
+    width: 48px;
+    height: 48px;
+    top: calc(50% + 21px);
+    border-width: 2.5px;
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+
+  /* Deck: Positioned cleanly under the video (compacted for mobile) */
+  .deck {
+    position: static;
+    background: #fff;
+    backdrop-filter: none;
+    border-top: none;
+    padding: 8px 12px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    cursor: default;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .deck-story {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .round {
+    font-size: 7px;
+    padding: 3px 6px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    box-shadow: 1px 1px 0 var(--green);
+  }
+  .story-t {
+    font-size: 9.5px;
+    line-height: 1.35;
+    white-space: normal;
+    margin: 0;
+  }
+  .story-d {
+    font-size: 11px;
+    line-height: 1.35;
+    color: var(--mut);
+    white-space: normal;
+    margin: 2px 0 0;
+  }
+  .deck-actions {
+    display: flex;
+    gap: 7px;
+    width: 100%;
   }
   .deck-actions .btn {
-    font-size: 9px;
-    padding: 11px 14px;
+    flex: 1;
+    text-align: center;
+    padding: 10px 6px;
+    font-size: 8px;
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+
+  /* Common Sections & Headings */
+  section {
+    padding: 40px 16px;
+  }
+  .tag-h {
+    font-size: 8px;
+    padding: 4px 7px;
+    margin-bottom: 8px;
+  }
+  h2.t {
+    font-size: 17px;
+    margin: 0 0 18px;
+    line-height: 1.35;
+  }
+
+  /* About Section */
+  .about-card {
+    padding: 18px 14px;
+    gap: 18px;
+    border-width: 2.5px;
+  }
+  .about-lead {
+    font-size: 16px;
+    line-height: 1.45;
+    margin: 0 0 12px;
+  }
+  .about-body p {
+    font-size: 13.5px;
+    line-height: 1.6;
+    margin: 0 0 12px;
+  }
+  .about-aside {
+    border-top: 2px solid var(--ink);
+    padding-top: 16px;
+  }
+  .edu-label {
+    font-size: 7.5px;
+    padding: 3px 6px;
+    margin-bottom: 8px;
+  }
+  .edu-school {
+    font-size: 13.5px;
+    margin: 0 0 4px;
+  }
+  .edu-field {
+    font-size: 12.5px;
+    margin: 0 0 6px;
+  }
+  .edu-year {
+    font-size: 11px;
+  }
+
+  /* Experience Section */
+  .tl {
+    padding-left: 18px;
+    gap: 16px;
+  }
+  .tl::before {
+    left: 4px;
+    width: 3px;
+  }
+  .job {
+    padding: 14px 14px;
+    border-width: 2.5px;
+  }
+  .job::before {
+    left: -20px;
+    top: 18px;
+    width: 13px;
+    height: 13px;
+    border-width: 2.5px;
+  }
+  .job-top {
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .job h3 {
+    font-size: 10px;
+    line-height: 1.45;
+  }
+  .job .co {
+    font-size: 12.5px;
+    margin-top: 2px;
+  }
+  .job .when {
+    font-size: 11px;
+    text-align: left;
+    width: 100%;
+    margin-top: 4px;
+  }
+  .job .when .chip {
+    margin-top: 4px;
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+  .job-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 8px 0 6px;
+  }
+  .job ul {
+    margin: 8px 0 0;
+    padding-left: 16px;
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .job li {
+    margin-bottom: 6px;
+  }
+
+  /* Projects Section */
+  .filters {
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .fbtn {
+    font-size: 8px;
+    padding: 6px 10px;
+    box-shadow: 2px 2px 0 var(--ink);
   }
   .grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
-  .stats {
+  .pc {
+    border-width: 2.5px;
+  }
+  .thumb {
+    aspect-ratio: 16/10;
+  }
+  .pb {
+    padding: 12px 14px;
+    gap: 6px;
+  }
+  .pb h3 {
+    font-size: 10.5px;
+    line-height: 1.4;
+  }
+  .role {
+    font-size: 12px;
+  }
+  .pb p {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .pb .chips {
+    gap: 5px;
+    margin-top: 2px;
+  }
+  .pb .chip {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  /* Skills Section */
+  .skills {
     grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .cart {
+    border-width: 2.5px;
+  }
+  .cart h3 {
+    padding: 8px 12px;
+    font-size: 8px;
+  }
+  .cart div {
+    padding: 10px 12px;
+    gap: 6px;
+  }
+  .cart .chip {
+    font-size: 11px;
+    padding: 3px 7px;
+  }
+
+  /* Contact Section */
+  .contact {
+    padding: 22px 14px;
+    border-width: 2.5px;
+  }
+  .contact h2 {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .contact p {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 16px;
   }
   .copy {
+    display: flex;
     flex-direction: column;
     width: 100%;
+    margin-bottom: 16px;
+    border-width: 2px;
   }
-  .job .when {
-    text-align: left;
+  .copy span {
+    padding: 9px 10px;
+    font-size: 11.5px;
+    word-break: break-all;
+    text-align: center;
   }
+  .copy button {
+    padding: 9px 12px;
+    font-size: 8px;
+    width: 100%;
+  }
+  .cl {
+    gap: 8px;
+    width: 100%;
+  }
+  .cl .btn {
+    flex: 1 1 calc(50% - 8px);
+    text-align: center;
+    padding: 10px 6px;
+    font-size: 8px;
+  }
+  .cl .btn:last-child {
+    flex: 1 1 100%;
+  }
+  footer {
+    padding: 20px 14px;
+    font-size: 12px;
+  }
+
+  /* Floating Resume Button & Modal */
   #fab {
     right: 12px;
     bottom: 12px;
+    font-size: 8px;
+    padding: 9px 12px;
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+  .ov {
+    padding: 10px;
+  }
+  .mb {
+    max-height: 94dvh;
+    border-width: 3px;
+  }
+  .mt {
+    padding: 8px 12px;
+  }
+  .mt h3 {
+    font-size: 8.5px;
+  }
+  .mbody {
+    padding: 12px;
+    gap: 10px;
+  }
+  .md {
+    font-size: 12.5px;
+    line-height: 1.5;
   }
 }
