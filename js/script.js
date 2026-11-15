@@ -389,6 +389,9 @@
       n: 'Fentec Mobility',
       cat: 'Mobile',
       role: 'Fentec (Algeria) · Sole engineer',
+      featured: true,
+      caseStudy: true,
+      caseStudyUrl: 'fentec.html',
       img: 'assets/thumbnails/fentec.png',
       link: ['https://apps.apple.com/us/app/fentec-mobility/id6502032921', 'App Store'],
       sum: 'E-scooter sharing app with IoT lock control, wallet payments and a kiosk seller network.',
@@ -401,6 +404,42 @@
         ['assets/projects/fentec/4.png', 'Kiosk seller app']
       ],
       d: 'Per-second scooter telemetry goes through Redis so the main database stays safe under fleet load. A vector-based geofencing engine blocks restricted zones. Because digital payments were limited in Algeria, I built a cash-to-digital wallet network with kiosk apps and a settlement portal.'
+    },
+    gspos: {
+      n: 'GS POS (Fawry & ETA)',
+      cat: 'FinTech',
+      role: 'Cyrus Technology · Android POS',
+      featured: true,
+      caseStudy: true,
+      img: 'assets/thumbnails/eysalak.png',
+      sum: 'Android POS for PAX terminals with Fawry payments and e-invoice submission to the Egyptian Tax Authority.',
+      tags: ['React Native', 'Fawry SDK', 'ETA', 'PAX'],
+      scr: [
+        ['1', 'PAX terminal POS'],
+        ['2', 'Card payment flow'],
+        ['4', 'ETA receipt'],
+        ['5', 'Void and audit history']
+      ].map(function (s) {
+        return ['assets/projects/gs/' + s[0] + '.png', s[1]];
+      }),
+      d: 'Integrated the Fawry payment SDK and passed production certification on the first submission. Receipts are sent to the tax authority in real time.'
+    },
+    dawlet: {
+      n: 'Dawlet El Telawa',
+      cat: 'Government',
+      role: 'United Media Services · Backend',
+      featured: true,
+      caseStudy: true,
+      img: 'assets/thumbnails/dawlet-eltelawa.png',
+      sum: 'National Quran competition platform: 400K+ registrations in its first week.',
+      tags: ['Laravel', 'hCaptcha', 'Fingerprinting', 'Cloudflare'],
+      scr: [1, 2, 3, 4].map(function (n) {
+        return [
+          'assets/projects/dawlet-eltelawa/' + n + '.png',
+          ['Public voting page', 'Contestant showcase', 'Anti-abuse stack', 'Cluster monitoring'][n - 1]
+        ];
+      }),
+      d: 'Layered fraud defense: request signatures, hCaptcha, IP rate limiting, browser fingerprinting, and scheduled jobs that detect and purge suspicious clusters.'
     },
     cyrus: {
       n: 'Cyrus RMS',
@@ -430,38 +469,6 @@
         ['assets/projects/elalamin/3.png', 'Mobile companion']
       ],
       d: 'REST APIs serving both a React web app and a Flutter mobile app, built for live event traffic.'
-    },
-    dawlet: {
-      n: 'Dawlet El Telawa',
-      cat: 'Government',
-      role: 'United Media Services · Backend',
-      img: 'assets/thumbnails/dawlet-eltelawa.png',
-      sum: 'National Quran competition platform: 400K+ registrations in its first week.',
-      tags: ['Laravel', 'hCaptcha', 'Fingerprinting', 'Cloudflare'],
-      scr: [1, 2, 3, 4].map(function (n) {
-        return [
-          'assets/projects/dawlet-eltelawa/' + n + '.png',
-          ['Public voting page', 'Contestant showcase', 'Anti-abuse stack', 'Cluster monitoring'][n - 1]
-        ];
-      }),
-      d: 'Layered fraud defense: request signatures, hCaptcha, IP rate limiting, browser fingerprinting, and scheduled jobs that detect and purge suspicious clusters.'
-    },
-    gspos: {
-      n: 'GS POS (Fawry & ETA)',
-      cat: 'FinTech',
-      role: 'Cyrus Technology · Android POS',
-      img: 'assets/thumbnails/eysalak.png',
-      sum: 'Android POS for PAX terminals with Fawry payments and e-invoice submission to the Egyptian Tax Authority.',
-      tags: ['React Native', 'Fawry SDK', 'ETA', 'PAX'],
-      scr: [
-        ['1', 'PAX terminal POS'],
-        ['2', 'Card payment flow'],
-        ['4', 'ETA receipt'],
-        ['5', 'Void and audit history']
-      ].map(function (s) {
-        return ['assets/projects/gs/' + s[0] + '.png', s[1]];
-      }),
-      d: 'Integrated the Fawry payment SDK and passed production certification on the first submission. Receipts are sent to the tax authority in real time.'
     },
     instasports: {
       n: 'InstaSports',
@@ -580,17 +587,81 @@
     })
     .join('');
 
+  var isExpanded = false;
+  var loadMoreWrap = $('loadMoreWrap');
+  var loadMoreBtn = $('loadMoreBtn');
+
   function renderGrid() {
-    $('grid').innerHTML = ids
-      .filter(function (id) {
-        return cur === 'All' || PROJ[id].cat === cur;
-      })
+    var filteredIds = ids.filter(function (id) {
+      return cur === 'All' || PROJ[id].cat === cur;
+    });
+
+    var visibleIds;
+    if (cur === 'All') {
+      if (!isExpanded) {
+        visibleIds = filteredIds.slice(0, 3);
+        if (loadMoreWrap && loadMoreBtn) {
+          loadMoreWrap.style.display = 'flex';
+          loadMoreBtn.textContent = '↓ LOAD MORE PROJECTS (' + (filteredIds.length - 3) + ' MORE)';
+        }
+      } else {
+        visibleIds = filteredIds;
+        if (loadMoreWrap && loadMoreBtn) {
+          loadMoreWrap.style.display = 'flex';
+          loadMoreBtn.textContent = '↑ SHOW LESS';
+        }
+      }
+    } else {
+      visibleIds = filteredIds;
+      if (loadMoreWrap) {
+        loadMoreWrap.style.display = 'none';
+      }
+    }
+
+    $('grid').innerHTML = visibleIds
       .map(function (id) {
         var p = PROJ[id];
+        var badgeHtml = p.caseStudy
+          ? '<span class="badge-cs px">CASE STUDY</span>'
+          : '';
+
+        if (p.caseStudyUrl) {
+          return (
+            '<a class="pc is-case-study" href="' +
+            p.caseStudyUrl +
+            '" aria-label="Read ' +
+            p.n +
+            ' case study">' +
+            '<div class="thumb">' +
+            badgeHtml +
+            '<img src="' +
+            p.img +
+            '" alt="' +
+            p.n +
+            ' screenshot" loading="lazy"></div><div class="pb"><h3 class="px">' +
+            p.n +
+            '</h3><div class="role">' +
+            p.role +
+            '</div><p>' +
+            p.sum +
+            '</p>' +
+            '</div></a>'
+          );
+        }
+
         return (
-          '<button class="pc" onclick="openModal(\'' +
+          '<div class="pc' +
+          (p.caseStudy ? ' is-case-study' : '') +
+          '" tabindex="0" role="button" aria-label="Open ' +
+          p.n +
+          ' details" onclick="openModal(\'' +
           id +
-          '\')"><div class="thumb"><img src="' +
+          '\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openModal(\'' +
+          id +
+          '\');}">' +
+          '<div class="thumb">' +
+          badgeHtml +
+          '<img src="' +
           p.img +
           '" alt="' +
           p.n +
@@ -600,20 +671,23 @@
           p.role +
           '</div><p>' +
           p.sum +
-          '</p><div class="chips">' +
-          p.tags
-            .map(function (t) {
-              return '<span class="chip">' + t + '</span>';
-            })
-            .join('') +
-          '</div><div class="more">VIEW ' +
-          p.scr.length +
-          ' SCREEN' +
-          (p.scr.length > 1 ? 'S' : '') +
-          '</div></div></button>'
+          '</p>' +
+          '</div></div>'
         );
       })
       .join('');
+  }
+
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', function () {
+      isExpanded = !isExpanded;
+      renderGrid();
+      if (!isExpanded) {
+        var pSection = $('projects');
+        if (pSection) pSection.scrollIntoView({ behavior: 'smooth' });
+      }
+      if (window.revealNow) window.revealNow($('grid'));
+    });
   }
 
   $('filters').addEventListener('click', function (e) {
@@ -623,6 +697,7 @@
     document.querySelectorAll('.fbtn').forEach(function (f) {
       f.classList.toggle('active', f === b);
     });
+    if (cur === 'All') isExpanded = false;
     renderGrid();
     if (window.revealNow) window.revealNow($('grid'));
   });
@@ -642,12 +717,23 @@
     lastFocus = document.activeElement;
     var p = PROJ[id];
     $('mTitle').textContent = p.n.toUpperCase();
+    var csAction = '';
+    if (p.caseStudyUrl) {
+      csAction =
+        '<p style="margin-top:14px"><a class="btn" href="' +
+        p.caseStudyUrl +
+        '" style="background:var(--green);color:#fff">▶ READ FULL CASE STUDY</a></p>';
+    } else if (p.caseStudy) {
+      csAction =
+        '<p style="margin-top:14px"><span class="badge-cs-modal px">★ FEATURED CASE STUDY</span></p>';
+    }
     $('mDetails').innerHTML =
       '<h4>' +
       p.role +
       '</h4><p>' +
       p.d +
       '</p>' +
+      csAction +
       (p.link
         ? '<p style="margin-top:12px"><a class="btn alt" href="' +
           p.link[0] +

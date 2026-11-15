@@ -1,0 +1,439 @@
+/* ==========================================================================
+   Fentec Mobility case study
+   Loads AFTER css/style.css and reuses its tokens, nav, buttons, chips,
+   .tag-h, h2.t, .cart/.skills and .contact blocks.
+   ========================================================================== */
+:root {
+  --orange: #f08a24;
+  --zone-g: #0f7a39;
+  --zone-o: #a85504;
+  --zone-r: #b32525;
+}
+
+[hidden] { display: none !important; }
+
+/* ---------- shared bits ---------- */
+.sheet {
+  background: #fff;
+  border: var(--b);
+  box-shadow: var(--s);
+}
+
+.mini {
+  margin: 0 0 12px;
+  font: 700 13px/1.4 "Space Mono", monospace;
+  color: var(--mut);
+}
+
+.tick-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tick-list li {
+  position: relative;
+  padding: 14px 0 14px 24px;
+  border-top: 1.5px solid rgba(20, 23, 28, 0.16);
+  color: var(--ink2);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.tick-list li:first-child { border-top: 0; padding-top: 0; }
+.tick-list li:last-child { padding-bottom: 0; }
+
+.tick-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.15em;
+  width: 8px;
+  height: 8px;
+  background: var(--green);
+}
+
+.tick-list li:first-child::before { top: 0.55em; }
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+.cs-hero {
+  max-width: 1160px;
+  margin: 56px auto 0;
+  padding: 64px 24px 48px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 360px);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+
+.cs-intro { min-width: 0; }
+
+.cs-title {
+  margin: 4px 0 18px;
+  font-size: clamp(26px, 3.4vw, 40px);
+  line-height: 1.3;
+}
+
+.cs-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.cs-chips .chip:hover { background: var(--soft); color: inherit; transform: none; }
+.cs-chips .chip { font-size: 13px; padding: 4px 10px; }
+
+.cs-copy p {
+  margin: 0 0 14px;
+  max-width: 60ch;
+  color: var(--ink2);
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.cs-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.cs-cta .btn { padding: 13px 18px; font-size: 10px; }
+
+/* ---------- geofence demo ---------- */
+.map-card {
+  min-width: 0;
+  background: #fff;
+  border: var(--b);
+  box-shadow: var(--s);
+}
+
+#map {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-bottom: var(--b);
+  user-select: none;
+  -webkit-user-select: none;
+  --zc: var(--green);
+}
+
+#map[data-zone="orange"] { --zc: var(--orange); }
+#map[data-zone="red"] { --zc: var(--red); }
+
+.m-base { fill: #f1f2ee; }
+.m-route { fill: none; stroke: var(--ink); stroke-width: 2; stroke-dasharray: 2 7; stroke-linecap: round; opacity: 0.28; }
+
+.z-green { fill: rgba(24, 185, 87, 0.28); stroke: var(--green); stroke-width: 3; }
+.z-orange { fill: rgba(240, 138, 36, 0.12); stroke: var(--orange); stroke-width: 3; stroke-dasharray: 9 6; }
+.z-red { fill: rgba(226, 59, 59, 0.28); stroke: var(--red); stroke-width: 3; }
+
+#scooter { cursor: grab; touch-action: none; outline: none; }
+#scooter:active { cursor: grabbing; }
+#scooter .hit { fill: transparent; }
+#scooter .disc { fill: #fff; stroke: var(--ink); stroke-width: 3; }
+#scooter .ink { fill: var(--ink); }
+#scooter .plank { fill: var(--green); stroke: var(--ink); stroke-width: 1.5; }
+#scooter .ring {
+  fill: none;
+  stroke: var(--zc);
+  stroke-width: 4;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ping 1.6s ease-out infinite;
+}
+#scooter:focus-visible .disc { stroke: var(--green); stroke-width: 5; }
+
+@keyframes ping {
+  from { transform: scale(1); opacity: 0.9; }
+  to { transform: scale(1.7); opacity: 0; }
+}
+
+.zone-panel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  --zc: var(--green);
+  --zt: var(--ink);
+}
+
+.zone-panel[data-zone="orange"] { --zc: var(--orange); }
+.zone-panel[data-zone="red"] { --zc: var(--red); --zt: #fff; }
+
+.zone-badge {
+  flex: none;
+  padding: 6px 9px;
+  font-size: 8px;
+  background: var(--zc);
+  color: var(--zt);
+  border: 2px solid var(--ink);
+  transition: background 0.2s;
+}
+
+.zone-desc { margin: 0; font-size: 14px; line-height: 1.4; color: var(--ink2); }
+
+/* ==========================================================================
+   Product screens
+   ========================================================================== */
+.shots {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.shots figure {
+  margin: 0;
+  background: #fff;
+  border: var(--b);
+  box-shadow: var(--s);
+}
+
+.shot {
+  display: block;
+  aspect-ratio: 16 / 10;
+  background: #1a1e24;
+  border-bottom: var(--b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.shot img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+.shots figcaption {
+  padding: 10px 14px;
+  font: 700 12px/1.4 "Space Mono", monospace;
+}
+
+/* ==========================================================================
+   Role
+   ========================================================================== */
+.role-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+}
+
+.role-intro,
+.role-list { padding: clamp(24px, 3.5vw, 44px); }
+
+.role-intro { border-right: 1.5px solid var(--ink); }
+
+.role-intro p {
+  margin: 0;
+  font-size: clamp(17px, 1.8vw, 21px);
+  line-height: 1.6;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+/* ==========================================================================
+   Challenges
+   ========================================================================== */
+#challenges h2.t { margin-bottom: 40px; }
+
+.ch {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 56px);
+  padding: 48px 0;
+  border-top: var(--b);
+}
+
+.ch:last-child { padding-bottom: 0; }
+
+.ch-side {
+  position: sticky;
+  top: 84px;
+  align-self: start;
+}
+
+.ch-num {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 6px 10px;
+  font-size: 12px;
+  background: var(--ink);
+  color: var(--green);
+  box-shadow: 2px 2px 0 var(--green);
+}
+
+.ch-side h3 {
+  margin: 0;
+  font-size: 19px;
+  line-height: 1.35;
+  letter-spacing: -0.2px;
+}
+
+.ch-body { min-width: 0; }
+
+.ch-body > p {
+  margin: 0 0 16px;
+  max-width: 68ch;
+  color: var(--ink2);
+  line-height: 1.8;
+}
+
+/* zone cards */
+.zones {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 24px 0 28px;
+}
+
+.zone {
+  --zc: var(--green);
+  padding: 16px 16px 18px;
+  background: #fff;
+  background: color-mix(in srgb, var(--zc) 7%, #fff);
+  border: var(--b);
+  border-top: 10px solid var(--zc);
+}
+
+.zone-o { --zc: var(--orange); }
+.zone-r { --zc: var(--red); }
+
+.zone h4 { margin: 0 0 8px; font-size: 15px; line-height: 1.35; }
+.zone p { margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--ink2); }
+
+/* integrations */
+.svc {
+  list-style: none;
+  margin: 8px 0 28px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.svc li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+
+.svc li {
+  padding: 12px 14px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-left: 8px solid var(--green);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink2);
+}
+
+/* CMS screenshot */
+.ch-fig {
+  margin: 0 0 28px;
+  background: #fff;
+  border: var(--b);
+  box-shadow: var(--s);
+}
+
+.ch-fig a { display: block; background: #1a1e24; border-bottom: var(--b); }
+.ch-fig img { display: block; width: 100%; height: auto; }
+.ch-fig figcaption { padding: 10px 14px; font: 700 12px/1.4 "Space Mono", monospace; }
+
+/* wallet flow */
+.flow-wrap { margin: 24px 0 28px; }
+
+.flow {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 22px;
+  counter-reset: step;
+}
+
+.flow li {
+  position: relative;
+  counter-increment: step;
+  padding: 12px 10px 12px 12px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.flow li::before {
+  content: counter(step);
+  display: block;
+  margin-bottom: 6px;
+  font: 700 11px "Space Mono", monospace;
+  color: var(--mut);
+}
+
+.flow li:not(:last-child)::after {
+  content: "▶";
+  position: absolute;
+  right: -18px;
+  top: 50%;
+  translate: 0 -50%;
+  font-size: 10px;
+}
+
+.flow li.bad { background: #fdecec; border-color: var(--red); }
+.flow li.ok { background: #e8f8ee; border-color: var(--green); }
+
+/* ==========================================================================
+   Impact + stack
+   ========================================================================== */
+.impact { padding: clamp(24px, 3.5vw, 44px); }
+.impact .tick-list li { font-size: 17px; }
+
+.cart.wide { grid-column: span 2; }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 960px) {
+  .cs-hero { grid-template-columns: 1fr; padding-top: 40px; }
+  .map-card { max-width: 420px; }
+  .role-grid { grid-template-columns: 1fr; }
+  .role-intro { border-right: 0; border-bottom: 1.5px solid var(--ink); }
+  .ch { grid-template-columns: 1fr; gap: 20px; padding: 36px 0; }
+  .ch-side { position: static; }
+  .shots { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 760px) {
+  .zones { grid-template-columns: 1fr; }
+  .svc { grid-template-columns: 1fr; }
+  .flow { grid-template-columns: 1fr; gap: 24px; }
+  .flow li:not(:last-child)::after {
+    content: "▼";
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: -19px;
+    translate: -50% 0;
+  }
+  .cart.wide { grid-column: auto; }
+}
+
+@media (max-width: 768px) {
+  .cs-hero { margin-top: 56px; padding: 24px 14px 16px; gap: 28px; }
+  .cs-title { font-size: 24px; }
+  .cs-copy p { font-size: 15px; line-height: 1.65; }
+  .cs-cta .btn { flex: 1 1 100%; font-size: 9px; }
+  .ch-fig { border-width: 2.5px; }
+  .map-card { border-width: 2.5px; max-width: none; }
+  .zone-panel { padding: 10px 12px; }
+  .zone-desc { font-size: 13px; }
+  .shots { gap: 16px; }
+  .shots figcaption { font-size: 11px; padding: 8px 10px; }
+  .ch-side h3 { font-size: 17px; }
+  .ch-body > p { font-size: 14.5px; line-height: 1.7; }
+  .tick-list li,
+  .impact .tick-list li { font-size: 14.5px; }
+  .role-intro p { font-size: 16px; }
+  .sheet { border-width: 2.5px; }
+  .ch { border-top-width: 2.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #scooter .ring { animation: none; opacity: 0.6; }
+}

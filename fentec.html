@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fentec Mobility — Case Study | Kareem Mohamed</title>
+<meta name="description" content="Fentec Mobility is a smart urban transportation platform for renting electric scooters, built end to end with IoT integration, geofencing and a points-based wallet.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fentec Mobility — Case Study | Kareem Mohamed">
+<meta property="og:description" content="Smart Urban Mobility Platform · IoT Integration · FinTech">
+<meta property="og:image" content="assets/thumbnails/fentec.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2314171c'/%3E%3Ctext x='16' y='22' font-size='16' font-family='monospace' font-weight='bold' fill='%2318b957' text-anchor='middle'%3EKM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/fentec.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="index.html"><i>KM</i>Kareem Mohamed</a>
+    <div class="links" id="links">
+      <a href="index.html#projects">← Projects</a><a href="#role">Role</a><a href="#challenges">Challenges</a><a href="#impact">Impact</a><a href="#stack">Stack</a><a href="#contact">Contact</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">Menu</button>
+  </div>
+  <i id="prog"></i>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="cs-hero" id="top">
+  <div class="cs-intro">
+    <div class="tag-h px">CASE STUDY</div>
+    <h1 class="cs-title px">Fentec Mobility</h1>
+    <div class="cs-chips">
+      <span class="chip">Smart Urban Mobility Platform</span>
+      <span class="chip">IoT Integration</span>
+      <span class="chip">FinTech</span>
+    </div>
+    <div class="cs-copy">
+      <p>Fentec Mobility is a smart urban transportation platform that enables users to rent electric scooters for short-distance trips. By scanning a QR code on a scooter, users can automatically unlock the device through IoT integration, start their journey, and pay based on their usage.</p>
+      <p>The platform aims to provide a convenient, affordable, and environmentally friendly alternative to traditional transportation, helping reduce urban congestion while making short-distance travel faster and more accessible.</p>
+    </div>
+    <div class="cs-cta">
+      <a class="btn" href="https://fentecmobility.com/" target="_blank" rel="noopener noreferrer">LIVE PROJECT</a>
+      <a class="btn alt" href="index.html#projects">ALL PROJECTS</a>
+    </div>
+  </div>
+
+  <div class="map-card">
+    <svg id="map" viewBox="0 0 640 420" role="group" aria-label="Geofencing demo: drag the scooter across green, orange and red zones" data-zone="green">
+      <rect width="640" height="420" class="m-base"/>
+      <polygon class="z z-orange" data-zone="orange" points="8,8 632,8 632,412 8,412"/>
+      <polygon class="z z-green"  data-zone="green"  points="70,90 250,60 330,120 340,260 260,350 100,340 55,220"/>
+      <polygon class="z z-red"    data-zone="red"    points="430,70 590,60 600,190 520,230 440,180"/>
+      <path id="route" class="m-route" d="M120 210C200 130 300 180 380 210S470 120 520 140S480 260 400 270S220 320 180 260S100 240 120 210Z"/>
+      <g id="scooter" tabindex="0" role="application" aria-label="Scooter. Drag it, or use the arrow keys, to move it across the zones.">
+        <circle class="hit" r="30"/>
+        <circle class="ring" r="20"/>
+        <circle class="disc" r="19"/>
+        <g transform="translate(-14 -12)">
+          <rect x="2" y="18" width="7" height="6" class="ink"/>
+          <rect x="19" y="18" width="7" height="6" class="ink"/>
+          <rect x="2" y="14" width="24" height="4" class="plank"/>
+          <rect x="20" y="3" width="3" height="12" class="ink"/>
+          <rect x="16" y="1" width="10" height="3" class="ink"/>
+        </g>
+      </g>
+    </svg>
+    <div class="zone-panel" id="zonePanel" data-zone="green" aria-live="polite" aria-atomic="true">
+      <span class="zone-badge px" id="zoneBadge">GREEN ZONE</span>
+      <p class="zone-desc" id="zoneDesc">Approved area. Ride freely.</p>
+    </div>
+  </div>
+</header>
+
+<!-- ============ SCREENS ============ -->
+<section id="screens">
+  <div class="tag-h px">PRODUCT</div>
+  <h2 class="t px">Live product</h2>
+  <div class="shots">
+    <figure><a class="shot" href="assets/projects/fentec/site.webp" target="_blank" rel="noopener noreferrer"><img src="assets/projects/fentec/site.webp" alt="Fentec Mobility website at fentecmobility.com" loading="lazy"></a><figcaption>Website · fentecmobility.com</figcaption></figure>
+    <figure><a class="shot" href="assets/projects/fentec/appstore.webp" target="_blank" rel="noopener noreferrer"><img src="assets/projects/fentec/appstore.webp" alt="Fentec Mobility App Store listing" loading="lazy"></a><figcaption>App Store listing</figcaption></figure>
+    <figure><a class="shot" href="assets/projects/fentec/playstore.webp" target="_blank" rel="noopener noreferrer"><img src="assets/projects/fentec/playstore.webp" alt="Fentec Mobility Google Play listing" loading="lazy"></a><figcaption>Google Play listing</figcaption></figure>
+  </div>
+</section>
+
+<!-- ============ ROLE ============ -->
+<section id="role">
+  <div class="tag-h px">ROLE</div>
+  <h2 class="t px">My Role &amp; Ownership</h2>
+  <div class="sheet role-grid">
+    <div class="role-intro">
+      <p>I was responsible for the end-to-end technical development of the product, working alongside a UI/UX designer from the initial concept and product planning through implementation and deployment.</p>
+    </div>
+    <div class="role-list">
+      <p class="mini">My responsibilities included:</p>
+      <ul class="tick-list">
+        <li>Participating in product ideation, technical planning, and solution design.</li>
+        <li>Evaluating scooter manufacturers and selecting an IoT provider that offered full device control, GPS tracking, and API integration capabilities.</li>
+        <li>Designing and developing the backend infrastructure and core business logic.</li>
+        <li>Building the main mobile application, POS application, and accountant application.</li>
+        <li>Designing integration workflows between the platform, scooter devices, and third-party services.</li>
+        <li>Addressing technical and business challenges specific to the Algerian market.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHALLENGES ============ -->
+<section id="challenges">
+  <div class="tag-h px">CHALLENGES</div>
+  <h2 class="t px">Key Engineering Challenges &amp; Solutions</h2>
+
+  <article class="ch" id="ch1">
+    <div class="ch-side"><span class="ch-num px">1</span><h3>Trip Tracking, IoT Communication &amp; Geofencing</h3></div>
+    <div class="ch-body">
+      <p>A core part of the platform was coordinating active scooter trips with device communication and geographical restrictions.</p>
+      <p>The backend was responsible for communicating with scooter IoT APIs throughout active trips, periodically fetching device and location updates through background jobs. It also handled remote device commands, including locking and unlocking scooters when trips started or ended.</p>
+      <p>To enforce geographical restrictions and ensure safe scooter operation, I implemented a polygon-based geofencing system with three zone types, each triggering different device behaviors:</p>
+      <div class="zones">
+        <div class="zone zone-g"><h4>Green Zones — Approved Areas</h4><p>Users can ride freely without geographical restrictions.</p></div>
+        <div class="zone zone-o"><h4>Orange Zones — Restricted Areas</h4><p>When a scooter enters an orange zone, the system triggers a speed reduction and starts a grace period, allowing the user time to return to an approved green zone before further restrictions are applied.</p></div>
+        <div class="zone zone-r"><h4>Red Zones — Prohibited Areas</h4><p>When a scooter enters a red zone, it is stopped immediately, and notifications are sent to both the user and responsible administrators to report the violation.</p></div>
+      </div>
+      <p>Frequent location updates and polygon calculations introduced performance challenges. To reduce unnecessary database access and repeated geographical calculations, I used Redis to cache relevant coordinates surrounding active trips and nearby zone data.</p>
+      <p>This required coordinating three components: Google Maps geographical data, scooter IoT APIs, and backend business logic.</p>
+    </div>
+  </article>
+
+  <article class="ch" id="ch2">
+    <div class="ch-side"><span class="ch-num px">2</span><h3>Third-Party Integrations &amp; Background Processing</h3></div>
+    <div class="ch-body">
+      <p>The platform relied on multiple external services, including:</p>
+      <ul class="svc">
+        <li>Scooter IoT APIs for device control and tracking.</li>
+        <li>Google Maps for geographical services.</li>
+        <li>Firebase for push notifications.</li>
+        <li>Apple Developer services and Google services for mobile application integrations.</li>
+        <li>Email services for system communications.</li>
+      </ul>
+      <p>A key engineering challenge was managing these integrations without allowing external service latency to negatively affect the user experience.</p>
+      <p>I designed integration workflows and evaluated which operations required synchronous execution and which could be delegated to background jobs.</p>
+      <p>For example, periodic scooter communication and trip tracking were handled asynchronously through background jobs, while time-sensitive device operations such as locking, unlocking, and zone-based speed control were initiated through backend API integrations.</p>
+      <p>This separation helped maintain responsive user-facing operations while handling external service communication.</p>
+    </div>
+  </article>
+
+  <article class="ch" id="ch3">
+    <div class="ch-side"><span class="ch-num px">3</span><h3>Financial Transactions &amp; Concurrent Wallet Operations</h3></div>
+    <div class="ch-body">
+      <p>The platform introduced a points-based wallet system, which required careful handling of concurrent financial operations.</p>
+      <p>Users could purchase points through a distributed POS network, addressing the challenges of operating in a cash-heavy market such as Algeria. The POS application allowed local merchants to sell points to users in a way similar to mobile phone credit top-ups.</p>
+      <p>A major challenge was maintaining balance integrity when multiple financial operations affected the same wallet simultaneously. For example, a user could purchase points while on an active trip or receive points from another user at the same time.</p>
+      <p>To prevent conflicting balance updates, I implemented optimistic locking using a version column combined with database transactions.</p>
+      <p>Each balance update validated the wallet’s current version before committing changes. When a concurrent update caused a version conflict, the operation performed a single retry: reloading the latest wallet balance and version, recalculating the transaction, and attempting the update again.</p>
+      <div class="flow-wrap">
+        <p class="mini">Wallet update flow</p>
+        <ol class="flow" aria-label="Wallet update flow">
+          <li>Validate the wallet’s current version</li>
+          <li class="bad">Version conflict from a concurrent update</li>
+          <li>Reload latest balance and version</li>
+          <li>Recalculate the transaction</li>
+          <li class="ok">Attempt the update again</li>
+        </ol>
+      </div>
+      <p>Transaction records were also maintained alongside wallet balances to provide a reliable financial reference and preserve transaction history.</p>
+    </div>
+  </article>
+</section>
+
+<!-- ============ IMPACT ============ -->
+<section id="impact">
+  <div class="tag-h px">IMPACT</div>
+  <h2 class="t px">Business Impact</h2>
+  <div class="sheet impact">
+    <ul class="tick-list">
+      <li>Helped launch one of Algeria’s early smart mobility platforms based on electric scooter sharing.</li>
+      <li>Introduced a points-based payment and distribution model to address cash-heavy market conditions.</li>
+      <li>Reached <strong>10,000+ app downloads within the first two years</strong>.</li>
+      <li>Delivered an integrated ecosystem connecting mobile applications, POS operations, accounting workflows, and IoT-enabled scooters.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ STACK ============ -->
+<section id="stack">
+  <div class="tag-h px">STACK</div>
+  <h2 class="t px">Technology Stack</h2>
+  <div class="skills">
+    <div class="cart"><h3 class="px">Backend</h3><div><span class="chip">Laravel</span></div></div>
+    <div class="cart"><h3 class="px">Mobile Development</h3><div><span class="chip">React Native</span></div></div>
+    <div class="cart"><h3 class="px">Web Applications</h3><div><span class="chip">React.js</span></div></div>
+    <div class="cart"><h3 class="px">Caching &amp; Background Processing</h3><div><span class="chip">Redis</span><span class="chip">Laravel Queues</span></div></div>
+    <div class="cart wide"><h3 class="px">External Integrations</h3><div><span class="chip">Google Maps APIs</span><span class="chip">Firebase</span><span class="chip">Scooter IoT APIs</span><span class="chip">Apple Developer Services</span><span class="chip">Email Services</span></div></div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="contact">
+    <h2 class="px">Let’s build something that lasts.</h2>
+    <p>Open to full-time roles and select contracts. Send me a message and I’ll reply within a day.</p>
+    <div class="copy"><span id="emailVal">kareem.mohamed.swd@gmail.com</span><button id="copyBtn" onclick="copyEmail()">COPY EMAIL</button></div>
+    <div class="cl">
+      <a class="btn" href="mailto:kareem.mohamed.swd@gmail.com">EMAIL ME</a>
+      <a class="btn alt" href="https://wa.me/201550552371" target="_blank" rel="noopener noreferrer">WHATSAPP</a>
+      <a class="btn alt" href="https://github.com/kareem-kairossol-io" target="_blank" rel="noopener noreferrer">GITHUB</a>
+      <a class="btn alt" href="https://linkedin.com/in/kareem-mohamed-b3b676261" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
+      <a class="btn dark" href="Kareem_Mohamed_Resume.pdf" target="_blank" rel="noopener noreferrer">RESUME PDF</a>
+    </div>
+  </div>
+</section>
+
+<div id="toast" class="px" role="status"></div>
+
+<footer>© 2026 Kareem Mohamed · Software Engineer · Cairo, Egypt</footer>
+
+<script src="js/fentec.js"></script>
+</body>
+</html>

@@ -965,7 +965,10 @@ h2.t {
   gap: 24px;
 }
 
+a.pc,
 .pc {
+  text-decoration: none;
+  color: inherit;
   background: #fff;
   border: var(--b);
   box-shadow: var(--s);
@@ -1052,6 +1055,88 @@ h2.t {
 .pc:hover .more {
   letter-spacing: 1.5px;
 }
+
+
+.badge-cs {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  left: auto;
+  background: var(--green);
+  color: #fff;
+  border: 2px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+  font: 700 8.5px/1 "Press Start 2P", monospace;
+  padding: 6px 8px;
+  letter-spacing: 0.5px;
+  z-index: 2;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.pc {
+  user-select: none;
+}
+
+.pc:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 3px;
+}
+
+.pc-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1.5px dashed rgba(20, 23, 28, 0.2);
+}
+
+.pc-foot .more {
+  margin-top: 0;
+}
+
+.cs-btn {
+  display: inline-flex;
+  align-items: center;
+  background: var(--green);
+  color: #fff;
+  font: 700 8.5px/1 "Press Start 2P", monospace;
+  padding: 8px 10px;
+  border: 2px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+  text-decoration: none;
+  transition: transform 0.1s, box-shadow 0.1s, background 0.15s;
+}
+
+.cs-btn:hover {
+  background: #139e4a;
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.load-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+}
+
+.load-more-wrap .btn {
+  padding: 14px 28px;
+  font-size: 11px;
+}
+
+.badge-cs-modal {
+  display: inline-block;
+  background: var(--green);
+  color: #fff;
+  border: 2px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+  font: 700 8.5px/1 "Press Start 2P", monospace;
+  padding: 6px 10px;
+}
+
 
 /* ==========================================================================
    Skills Section
