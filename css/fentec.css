@@ -62,10 +62,11 @@
   max-width: 1160px;
   margin: 56px auto 0;
   padding: 64px 24px 48px;
-  display: grid;
+  /* display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 360px);
   gap: clamp(32px, 5vw, 72px);
-  align-items: center;
+  align-items: center; */
+  text-align: justify;
 }
 
 .cs-intro { min-width: 0; }
@@ -88,7 +89,6 @@
 
 .cs-copy p {
   margin: 0 0 14px;
-  max-width: 60ch;
   color: var(--ink2);
   font-size: 17px;
   line-height: 1.75;
@@ -109,6 +109,7 @@
   background: #fff;
   border: var(--b);
   box-shadow: var(--s);
+  display: none;
 }
 
 #map {

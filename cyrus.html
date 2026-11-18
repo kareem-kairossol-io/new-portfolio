@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cyrus RMS Offline POS — Case Study | Kareem Mohamed</title>
+<meta name="description" content="Cyrus RMS Offline POS is an offline-first desktop point-of-sale application built with Electron, React and TypeScript, with dependency-aware synchronization to a central cloud platform.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cyrus RMS Offline POS — Case Study | Kareem Mohamed">
+<meta property="og:description" content="Offline-First Desktop POS · Enterprise Retail Systems · Financial Operations">
+<meta property="og:image" content="assets/projects/cyrus/pos.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2314171c'/%3E%3Ctext x='16' y='22' font-size='16' font-family='monospace' font-weight='bold' fill='%2318b957' text-anchor='middle'%3EKM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/fentec.css">
+<link rel="stylesheet" href="css/cyrus.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="index.html"><i>KM</i>Kareem Mohamed</a>
+    <div class="links" id="links">
+      <a href="index.html#projects">← Projects</a><a href="#role">Role</a><a href="#challenges">Challenges</a><a href="#decisions">Decisions</a><a href="#impact">Impact</a><a href="#stack">Stack</a><a href="#contact">Contact</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">Menu</button>
+  </div>
+  <i id="prog"></i>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="cs-hero" id="top">
+  <div class="cs-intro">
+    <div class="tag-h px">CASE STUDY</div>
+    <h1 class="cs-title long px">Cyrus Offline POS</h1>
+    <div class="cs-chips">
+      <span class="chip">Offline-First Desktop POS</span>
+      <span class="chip">Enterprise Retail Systems</span>
+      <span class="chip">Financial Operations</span>
+    </div>
+    <div class="cs-copy">
+      <p>Cyrus RMS Offline POS is an offline-first desktop point-of-sale application developed as part of a larger Retail Management System (RMS). It enables retail branches to continue handling sales and daily operations independently of internet connectivity, while synchronizing transactions and operational data with the central cloud platform once connectivity is available.</p>
+      <p>The application manages the complete point-of-sale workflow, including sales, returns, delivery orders, draft orders, cashier sessions, payment processing, cash movements, and inventory operations.</p>
+      <p>It was designed to maintain business continuity in environments with unreliable internet connections while preserving financial accuracy, transaction integrity, and synchronization consistency across local and cloud environments.</p>
+    </div>
+    <div class="cs-cta">
+      <a class="btn" href="#challenges">KEY CHALLENGES ↓</a>
+      <a class="btn alt" href="index.html#projects">ALL PROJECTS</a>
+    </div>
+  </div>
+
+  <div class="sync-card" id="syncCard" data-net="off">
+    <div class="sync-top">
+      <span class="net-pill px" id="netPill">OFFLINE</span>
+      <button class="btn alt" id="netBtn" type="button">GO ONLINE</button>
+    </div>
+    <ol class="sync-list" aria-label="Synchronization order">
+      <li data-state="local"><span class="sync-n">1</span><div><b>Session Synchronization</b><small>Closed cashier sessions go first.</small></div><span class="state">LOCAL</span></li>
+      <li data-state="local"><span class="sync-n">2</span><div><b>Sales Order Synchronization</b><small>Sent once their session is registered in the cloud.</small></div><span class="state">LOCAL</span></li>
+      <li data-state="local"><span class="sync-n">3</span><div><b>Returns &amp; Voids</b><small>Processed according to their original sales orders.</small></div><span class="state">LOCAL</span></li>
+    </ol>
+    <p class="sync-msg" id="syncMsg" aria-live="off">No connection. Sales continue locally.</p>
+  </div>
+</header>
+
+<!-- ============ ROLE ============ -->
+<section id="role">
+  <div class="tag-h px">ROLE</div>
+  <h2 class="t px">My Role &amp; Ownership</h2>
+  <div class="sheet role-grid">
+    <div class="role-intro">
+      <p>I was responsible for the complete desktop application development and its offline infrastructure, including the application architecture, local database design, synchronization mechanisms, and POS user experience.</p>
+    </div>
+    <div class="role-list">
+      <p class="mini">My responsibilities included:</p>
+      <ul class="tick-list">
+        <li>Designing and implementing the desktop application architecture using Electron, React, and TypeScript.</li>
+        <li>Designing and managing the local SQL Server database schema and transactional data operations.</li>
+        <li>Building the offline data management and synchronization engines.</li>
+        <li>Developing core POS workflows, including sales, returns, payments, cashier sessions, and cash movements.</li>
+        <li>Implementing synchronization tracking, rejection handling, and recovery mechanisms.</li>
+        <li>Integrating hardware peripherals such as barcode scanners, thermal printers, weighing scales, and customer-facing displays.</li>
+        <li>Developing an automated environment setup utility to simplify deployment and support operations.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHALLENGES ============ -->
+<section id="challenges">
+  <div class="tag-h px">CHALLENGES</div>
+  <h2 class="t px">Key Engineering Challenges &amp; Solutions</h2>
+
+  <article class="ch" id="ch1">
+    <div class="ch-side"><span class="ch-num px">1</span><h3>Offline-First Architecture &amp; Data Synchronization</h3></div>
+    <div class="ch-body">
+      <p>One of the main challenges was maintaining uninterrupted point-of-sale operations despite unreliable or completely unavailable internet connectivity.</p>
+      <p>The application needed to support local transactions independently while ensuring that all relevant data could eventually be synchronized with the central RMS platform without losing transaction history or violating business dependencies.</p>
+      <p>I designed a local-first architecture using SQL Server as the primary operational database for the desktop application.</p>
+      <p>The synchronization engine handled both outgoing transactions and incoming master data updates, with mechanisms for tracking synchronization states, processing failures, and recovering rejected records.</p>
+      <p>To maintain data consistency, synchronization followed dependency-based execution rules:</p>
+      <div class="zones">
+        <div class="zone zone-n"><span class="rule-n px">1</span><h4>Session Synchronization</h4><p>Closed cashier sessions were synchronized first.</p></div>
+        <div class="zone zone-n"><span class="rule-n px">2</span><h4>Sales Order Synchronization</h4><p>Sales orders and related transactions were synchronized only after their associated sessions were successfully registered in the cloud.</p></div>
+        <div class="zone zone-n"><span class="rule-n px">3</span><h4>Returns &amp; Voids</h4><p>Dependent transactions were processed according to their original sales orders and synchronization status.</p></div>
+      </div>
+      <p>I also implemented a synchronization state machine to track the progress of each session and its associated transactions, preventing dependent records from being uploaded before their prerequisites were fulfilled.</p>
+      <p>The application supported multiple synchronization transport options, including REST APIs and RabbitMQ, allowing the communication mechanism to be configured based on the deployment environment.</p>
+      <figure class="ch-fig">
+        <a href="assets/projects/cyrus/sync.webp" target="_blank" rel="noopener noreferrer"><img src="assets/projects/cyrus/sync.webp" alt="Data Synchronization screen with selectable data groups and a date range" loading="lazy"></a>
+        <figcaption>Data synchronization: choose data groups, set a date range, sync</figcaption>
+      </figure>
+    </div>
+  </article>
+
+  <article class="ch" id="ch2">
+    <div class="ch-side"><span class="ch-num px">2</span><h3>Financial Integrity &amp; Post-Synchronization Payment Modifications</h3></div>
+    <div class="ch-body">
+      <p>Handling financial operations offline introduced challenges when transactions were modified locally while their corresponding records might already exist in the cloud.</p>
+      <p>One particularly challenging scenario was modifying payment details for an already synchronized sales order.</p>
+      <p>Changing payment information locally without updating the cloud could create inconsistencies between the local and central financial records.</p>
+      <p>To address this, I implemented different update workflows based on the synchronization state of each order:</p>
+      <div class="zones">
+        <div class="zone zone-g"><h4>Offline or Rejected Orders</h4><p>Payment modifications were processed locally within database transactions. Existing payment records and histories were updated, remaining balances and payment statuses were recalculated, and audit logs were maintained.</p></div>
+        <div class="zone zone-y"><h4>Synchronized Orders</h4><p>Local modifications were not applied immediately. Instead, the application first submitted the payment update to the cloud API. Local changes were committed only after receiving a successful synchronization response.</p></div>
+        <div class="zone zone-r"><h4>Queued Orders</h4><p>Payment modifications were restricted while an order was waiting to be synchronized, preventing conflicting operations and race conditions.</p></div>
+      </div>
+      <p>This approach helped maintain consistency between local and cloud financial records while preserving a complete history of payment changes.</p>
+      <figure class="ch-fig">
+        <a href="assets/projects/cyrus/orders.webp" target="_blank" rel="noopener noreferrer"><img src="assets/projects/cyrus/orders.webp" alt="Orders list for a session with View, Print Receipt, Update payment and Void Order actions" loading="lazy"></a>
+        <figcaption>Session orders: view, print receipt, update payment, void order</figcaption>
+      </figure>
+    </div>
+  </article>
+
+  <article class="ch" id="ch3">
+    <div class="ch-side"><span class="ch-num px">3</span><h3>Cash Management &amp; Session Reconciliation</h3></div>
+    <div class="ch-body">
+      <p>Cashier sessions involved multiple financial operations that needed to remain accurate throughout the working shift.</p>
+      <p>I implemented workflows for managing:</p>
+      <ul class="svc">
+        <li>Opening cash balances.</li>
+        <li>Cash-in and cash-out operations.</li>
+        <li>Petty cash expenses.</li>
+        <li>Transfers between cashier drawers and the central safe.</li>
+        <li>Tips and over-cash adjustments.</li>
+        <li>Multiple currencies and exchange rates.</li>
+      </ul>
+      <p>The system also supported multi-currency calculations by maintaining transaction values in the base currency through calculated exchange rates.</p>
+      <p>One important part of this workflow was session reconciliation.</p>
+      <p>Before closing a cashier session, the cashier had to enter the actual counted amount. The application then compared it against the system-calculated amount, separately accounting for payment methods and currencies.</p>
+      <p>The resulting reconciliation identified cash shortages and overages, with additional records for their associated reasons and responsible staff members.</p>
+      <p>Session closure was also restricted when unresolved draft or held orders remained, ensuring that pending transactions were properly handled before the shift could be finalized.</p>
+      <div class="ch-figs">
+        <figure class="ch-fig">
+          <a href="assets/projects/cyrus/session.webp" target="_blank" rel="noopener noreferrer"><img src="assets/projects/cyrus/session.webp" alt="Session details with financial summary and cash totals by currency" loading="lazy"></a>
+          <figcaption>Session details: totals by currency</figcaption>
+        </figure>
+        <figure class="ch-fig">
+          <a href="assets/projects/cyrus/report.webp" target="_blank" rel="noopener noreferrer"><img src="assets/projects/cyrus/report.webp" alt="Printable session report preview" loading="lazy"></a>
+          <figcaption>Session report, ready to print</figcaption>
+        </figure>
+      </div>
+    </div>
+  </article>
+
+  <article class="ch" id="ch4">
+    <div class="ch-side"><span class="ch-num px">4</span><h3>Inventory Control &amp; Controlled Negative Stock Operations</h3></div>
+    <div class="ch-body">
+      <p>Operating offline introduced inventory consistency challenges, especially when local stock information became outdated due to delayed synchronization.</p>
+      <p>For example, a product might appear unavailable locally even though additional stock had already been received at the central warehouse.</p>
+      <p>Completely blocking sales in these situations could interrupt business operations, while allowing unrestricted negative stock could compromise inventory accuracy.</p>
+      <p>To handle this, I implemented a controlled quantity validation workflow.</p>
+      <p>When the local available quantity was insufficient, the application displayed a quantity confirmation dialog and required an authorized manager password before allowing the sale to proceed.</p>
+      <div class="flow-wrap">
+        <p class="mini">Negative stock flow</p>
+        <ol class="flow four" aria-label="Negative stock flow">
+          <li>Local available quantity is insufficient</li>
+          <li>Quantity confirmation dialog</li>
+          <li>Authorized manager password</li>
+          <li class="ok">Sale proceeds</li>
+        </ol>
+      </div>
+      <p>This provided a controlled exception mechanism for negative stock sales while preserving the information needed for subsequent cloud synchronization and inventory reconciliation.</p>
+      <figure class="ch-fig">
+        <a href="assets/projects/cyrus/pos.webp" target="_blank" rel="noopener noreferrer"><img src="assets/projects/cyrus/pos.webp" alt="POS sales screen with product tiles showing available quantities" loading="lazy"></a>
+        <figcaption>Main sales screen: availability is shown on every product</figcaption>
+      </figure>
+    </div>
+  </article>
+
+  <article class="ch" id="ch5">
+    <div class="ch-side"><span class="ch-num px">5</span><h3>Role-Based Permissions &amp; Offline Security</h3></div>
+    <div class="ch-body">
+      <p>The desktop application required granular access control to protect sensitive financial and operational workflows, even when operating without an internet connection.</p>
+      <p>I implemented permission checks across application screens and operations, including hierarchical permission rules and wildcard-based permission matching.</p>
+      <p>The application also supported locally available administrative authorization credentials for restricted operations, including:</p>
+      <ul class="svc">
+        <li>Manager approval for restricted actions.</li>
+        <li>Authorization for negative stock sales.</li>
+        <li>Approval for modifying existing payment information.</li>
+        <li>Protection against unauthorized application closure during an active cashier session.</li>
+      </ul>
+      <p>These mechanisms allowed the application to enforce operational restrictions without depending on continuous connectivity to the central system.</p>
+    </div>
+  </article>
+
+  <article class="ch" id="ch6">
+    <div class="ch-side"><span class="ch-num px">6</span><h3>Rejected Transactions &amp; Synchronization Recovery</h3></div>
+    <div class="ch-body">
+      <p>Synchronization failures could occur due to business validation errors, pricing conflicts, sequence issues, or other server-side rejection conditions.</p>
+      <p>Simply retrying failed transactions without understanding their state could lead to repeated failures or inconsistent records.</p>
+      <p>I implemented dedicated rejection handling workflows that allowed cashiers and managers to review rejected sessions and sales orders, inspect rejection reasons, and initiate manual recovery when necessary.</p>
+      <p>I also developed a scheduled retry mechanism that periodically re-evaluated rejected records and attempted synchronization again when appropriate.</p>
+      <p>The retry service ran every 60 minutes, while authorized users could also manually trigger synchronization recovery for individual sales orders.</p>
+    </div>
+  </article>
+
+  <article class="ch" id="ch7">
+    <div class="ch-side"><span class="ch-num px">7</span><h3>Automated Deployment &amp; Support Tooling</h3></div>
+    <div class="ch-body">
+      <p>To simplify deployment and reduce repetitive manual configuration for the support team, I developed a dedicated setup utility for preparing new POS environments.</p>
+      <p>Instead of requiring support engineers to manually configure multiple Windows and SQL Server components, the utility automated the initial setup process through a few straightforward actions.</p>
+      <p>It handled:</p>
+      <ul class="svc">
+        <li>Creating and initializing the required local SQL Server database.</li>
+        <li>Configuring application network ports.</li>
+        <li>Setting up the necessary Windows Firewall rules.</li>
+        <li>Enabling and configuring SQL Server Authentication.</li>
+        <li>Preparing application-specific data directories under Windows AppData.</li>
+        <li>Connecting the database configuration and environment settings to the main POS application.</li>
+      </ul>
+      <p>This reduced manual setup effort, simplified installation, and made preparing new POS environments more consistent for the support team.</p>
+    </div>
+  </article>
+</section>
+
+<!-- ============ DECISIONS ============ -->
+<section id="decisions">
+  <div class="tag-h px">DECISIONS</div>
+  <h2 class="t px">Engineering Decisions</h2>
+  <div class="decisions">
+    <div class="sheet decision">
+      <h3>Local Relational Database</h3>
+      <p>I chose SQL Server with TypeORM for local data persistence because the POS application handled complex transactional workflows involving multiple related records, including sales orders, order lines, taxes, payment histories, and tips.</p>
+      <p>Using database transactions ensured that related financial records were committed together or rolled back entirely in case of failure.</p>
+    </div>
+    <div class="sheet decision">
+      <h3>Hybrid Synchronization Transport</h3>
+      <p>The synchronization architecture supported both REST API communication and RabbitMQ through centralized configuration.</p>
+      <p>This provided flexibility across different deployment environments without requiring changes to the core business workflows.</p>
+    </div>
+    <div class="sheet decision">
+      <h3>Dependency-Aware Synchronization</h3>
+      <p>I designed synchronization around the relationships between cashier sessions, sales orders, returns, and other dependent transactions.</p>
+      <p>This prevented records from being uploaded before their required parent records were successfully synchronized.</p>
+    </div>
+    <div class="sheet decision">
+      <h3>Audit Logging</h3>
+      <p>I implemented local audit logging for sensitive financial modifications and void operations, recording the responsible employee and the previous and updated data.</p>
+      <p>This provided traceability for operational changes and supported financial reviews.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IMPACT ============ -->
+<section id="impact">
+  <div class="tag-h px">IMPACT</div>
+  <h2 class="t px">Results &amp; Business Impact</h2>
+  <div class="sheet impact">
+    <ul class="tick-list">
+      <li>Enabled retail branches to continue point-of-sale operations during internet outages through a local-first architecture.</li>
+      <li>Established transactional local data management to protect sales, payments, and financial records.</li>
+      <li>Implemented dependency-aware synchronization and recovery workflows between local POS environments and the central RMS platform.</li>
+      <li>Improved financial visibility through multi-currency cash management, session reconciliation, and audit logging.</li>
+      <li>Simplified deployment and reduced repetitive support tasks through automated environment provisioning.</li>
+      <li>Integrated desktop operations with essential retail hardware, including thermal receipt printers, barcode scanners, weighing scales, and customer-facing displays.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ STACK ============ -->
+<section id="stack">
+  <div class="tag-h px">STACK</div>
+  <h2 class="t px">Technology Stack</h2>
+  <div class="skills">
+    <div class="cart"><h3 class="px">Desktop Runtime</h3><div><span class="chip">Electron</span><span class="chip">Node.js</span></div></div>
+    <div class="cart wide"><h3 class="px">Frontend</h3><div><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Redux Toolkit</span><span class="chip">RTK Query</span><span class="chip">Tailwind CSS</span></div></div>
+    <div class="cart"><h3 class="px">Local Database &amp; ORM</h3><div><span class="chip">SQL Server</span><span class="chip">TypeORM</span></div></div>
+    <div class="cart wide"><h3 class="px">Synchronization &amp; Communication</h3><div><span class="chip">REST APIs</span><span class="chip">RabbitMQ</span><span class="chip">Axios</span><span class="chip">WebSockets</span></div></div>
+    <div class="cart"><h3 class="px">Background Processing</h3><div><span class="chip">Node-Cron</span><span class="chip">Scheduled Retry Jobs</span></div></div>
+    <div class="cart"><h3 class="px">Desktop Integration</h3><div><span class="chip">Electron IPC</span><span class="chip">Preload APIs</span></div></div>
+    <div class="cart full"><h3 class="px">Hardware Integration</h3><div><span class="chip">ESC/POS Thermal Printing</span><span class="chip">Barcode Scanners</span><span class="chip">Weighing Scales</span><span class="chip">Dual Displays</span></div></div>
+    <div class="cart"><h3 class="px">Localization</h3><div><span class="chip">i18next (Arabic &amp; English)</span></div></div>
+  </div>
+</section>
+
+<!-- ============ MORE CASE STUDIES ============ -->
+<section id="more-cases">
+  <div class="tag-h px">MORE WORK</div>
+  <div class="sheet" style="padding: clamp(24px, 3.5vw, 40px); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+    <div style="max-width: 600px;">
+      <span class="chip" style="margin-bottom: 12px;">FinTech · Hybrid Android POS</span>
+      <h3 class="px" style="font-size: clamp(20px, 2.5vw, 28px); margin: 6px 0 12px; line-height: 1.3;">Eysalak </h3>
+      <p style="margin: 0; color: var(--ink2); font-size: 16px; line-height: 1.6;">Smart Android POS application with Fawry payments, PAX thermal printing, and Egyptian Tax Authority fiscal electronic receipts.</p>
+    </div>
+    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+      <a class="btn" href="esalek.html">EYSALAK CASE STUDY →</a>
+      <a class="btn alt" href="fentec.html">← FENTEC</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="contact">
+    <h2 class="px">Let’s build something that lasts.</h2>
+    <p>Open to full-time roles and select contracts. Send me a message and I’ll reply within a day.</p>
+    <div class="copy"><span id="emailVal">kareem.mohamed.swd@gmail.com</span><button id="copyBtn" onclick="copyEmail()">COPY EMAIL</button></div>
+    <div class="cl">
+      <a class="btn" href="mailto:kareem.mohamed.swd@gmail.com">EMAIL ME</a>
+      <a class="btn alt" href="https://wa.me/201550552371" target="_blank" rel="noopener noreferrer">WHATSAPP</a>
+      <a class="btn alt" href="https://github.com/kareem-kairossol-io" target="_blank" rel="noopener noreferrer">GITHUB</a>
+      <a class="btn alt" href="https://linkedin.com/in/kareem-mohamed-b3b676261" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
+      <a class="btn dark" href="Kareem_Mohamed_Resume.pdf" target="_blank" rel="noopener noreferrer">RESUME PDF</a>
+    </div>
+  </div>
+</section>
+
+<div id="toast" class="px" role="status"></div>
+
+<footer>© 2026 Kareem Mohamed · Software Engineer · Cairo, Egypt</footer>
+
+<script src="js/cyrus.js"></script>
+</body>
+</html>

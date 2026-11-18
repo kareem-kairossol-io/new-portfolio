@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eysalak (GS-Cyrus POS) — Case Study | Kareem Mohamed</title>
+<meta name="description" content="Eysalak is a smart Android POS application built with Fawry, combining sales, card payments, thermal printing and Egyptian Tax Authority electronic receipts in one platform.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Eysalak (GS-Cyrus POS) — Case Study | Kareem Mohamed">
+<meta property="og:description" content="Hybrid POS & Fiscal Electronic Receipt System · FinTech · Native Android Integration">
+<meta property="og:image" content="assets/projects/esalek/app.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2314171c'/%3E%3Ctext x='16' y='22' font-size='16' font-family='monospace' font-weight='bold' fill='%2318b957' text-anchor='middle'%3EKM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/fentec.css">
+<link rel="stylesheet" href="css/cyrus.css">
+<link rel="stylesheet" href="css/esalek.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="index.html"><i>KM</i>Kareem Mohamed</a>
+    <div class="links" id="links">
+      <a href="index.html#projects">← Projects</a><a href="#problem">Problem</a><a href="#role">Role</a><a href="#challenges">Challenges</a><a href="#decisions">Decisions</a><a href="#impact">Impact</a><a href="#stack">Stack</a><a href="#contact">Contact</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">Menu</button>
+  </div>
+  <i id="prog"></i>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="cs-hero" id="top">
+  <div class="cs-intro">
+    <div class="tag-h px">CASE STUDY</div>
+    <h1 class="cs-title long px">Eysalak </h1>
+    <div class="cs-chips">
+      <span class="chip">Hybrid POS &amp; Fiscal Electronic Receipt System</span>
+      <span class="chip">FinTech</span>
+      <span class="chip">Native Android Integration</span>
+    </div>
+    <div class="cs-copy">
+      <p>Esalek is a smart Android-based Point of Sale (POS) application developed in strategic partnership with <strong>Fawry</strong>, designed to operate on dedicated payment terminals such as PAX A960 and PAX A930, while also supporting standard Android phones and tablets.</p>
+      <p>The application combines sales processing, shift management, electronic card payments, thermal receipt printing, and integration with the Egyptian Tax Authority (ETA) electronic receipt system in a single platform.</p>
+      <p>By combining payment processing and fiscal receipt generation, Esalek provides merchants with a unified solution that simplifies daily operations and reduces their dependency on multiple separate devices and systems.</p>
+    </div>
+    <div class="cs-cta">
+      <a class="btn" href="#challenges">KEY CHALLENGES ↓</a>
+      <a class="btn alt" href="index.html#projects">ALL PROJECTS</a>
+    </div>
+  </div>
+
+  <div class="sync-card pay-card" id="payCard" data-mode="approved">
+    <div class="sync-top">
+      <span class="net-pill px" id="modePill">APPROVED</span>
+      <button class="btn alt" id="modeBtn" type="button">SIMULATE INTERRUPTION</button>
+    </div>
+    <ol class="sync-list" aria-label="Order-first payment workflow">
+      <li data-state="idle"><span class="sync-n">1</span><div><b>Create a pending order</b><small>With a unique orderNumber.</small></div><span class="state">WAIT</span></li>
+      <li data-state="idle"><span class="sync-n">2</span><div><b>Initiate the card payment</b><small>Through the Fawry POS SDK.</small></div><span class="state">WAIT</span></li>
+      <li data-state="idle"><span class="sync-n">3</span><div><b>Receive the payment result</b><small>Submit the details to the backend.</small></div><span class="state">WAIT</span></li>
+      <li data-state="idle"><span class="sync-n">4</span><div><b>Generate the fiscal receipt</b><small>Only after confirmed payment.</small></div><span class="state">WAIT</span></li>
+    </ol>
+    <p class="sync-msg" id="payMsg" aria-live="off">Order first, receipt after payment.</p>
+  </div>
+</header>
+
+<!-- ============ PROBLEM ============ -->
+<section id="problem">
+  <div class="tag-h px">PROBLEM</div>
+  <h2 class="t px">The Problem</h2>
+  <div class="prose">
+    <p>Traditional retail payment environments often require merchants to operate multiple disconnected systems: a POS application for sales, a separate payment terminal for card transactions, and an additional system for fiscal receipt integration.</p>
+    <p>This creates several operational and technical challenges:</p>
+  </div>
+  <div class="decisions">
+    <div class="sheet decision"><h3>Disconnected Systems</h3><p>Merchants need to manage sales, electronic payments, and tax-compliant receipts across separate devices and platforms.</p></div>
+    <div class="sheet decision"><h3>Payment and Fiscal Sequence Integrity</h3><p>Generating a fiscal receipt before confirming a successful card payment can create financial discrepancies and unnecessary fiscal cancellation procedures.</p></div>
+    <div class="sheet decision"><h3>Uncertain Payment Outcomes</h3><p>Network interruptions or application crashes can leave a transaction in an unknown state, even when the customer’s card has already been charged.</p></div>
+    <div class="sheet decision"><h3>Hardware Dependency</h3><p>Applications built specifically for payment terminals cannot easily operate on standard Android devices that lack proprietary payment and printing hardware.</p></div>
+  </div>
+</section>
+
+<!-- ============ ROLE ============ -->
+<section id="role">
+  <div class="tag-h px">ROLE</div>
+  <h2 class="t px">My Role &amp; Ownership</h2>
+  <div class="sheet role-grid">
+    <div class="role-intro">
+      <span class="chip g role-title">Android &amp; Mobile Application Engineer</span>
+      <p>I was responsible for developing the Android application and its integration with the Fawry payment infrastructure and POS hardware.</p>
+    </div>
+    <div class="role-list">
+      <p class="mini">My responsibilities included:</p>
+      <ul class="tick-list">
+        <li>Developing the React Native application and integrating it with backend APIs.</li>
+        <li>Investigating and integrating the Fawry POS SDK, including its AAR libraries and inter-process communication mechanisms.</li>
+        <li>Building custom native Android modules using Java and Kotlin to expose payment and hardware capabilities to React Native.</li>
+        <li>Designing the payment workflow and handling critical transaction scenarios, including interrupted payments, inquiries, and cancellations.</li>
+        <li>Implementing hardware abstraction and safe initialization to support both dedicated PAX terminals and standard Android devices.</li>
+        <li>Developing thermal printing functionality with Arabic text shaping and fiscal QR code support.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHALLENGES ============ -->
+<section id="challenges">
+  <div class="tag-h px">CHALLENGES</div>
+  <h2 class="t px">Key Engineering Challenges &amp; Solutions</h2>
+
+  <article class="ch" id="ch1">
+    <div class="ch-side"><span class="ch-num px">1</span><h3>Payment Processing &amp; Fiscal Receipt Integrity</h3></div>
+    <div class="ch-body">
+      <span class="lab lab-c">Challenge</span>
+      <p>The application needed to coordinate two independent processes: electronic card payment and fiscal receipt generation.</p>
+      <p>Generating a fiscal receipt before confirming the payment could result in a registered receipt for a transaction that was never successfully paid.</p>
+      <span class="lab lab-s">Solution</span>
+      <p>I implemented an order-first, receipt-after-payment workflow that separates the transaction into distinct stages:</p>
+      <ol class="flow four" aria-label="Order-first, receipt-after-payment stages">
+        <li>Create a pending order with a unique <code>orderNumber</code>.</li>
+        <li>Initiate the card payment through the Fawry POS SDK.</li>
+        <li>Receive the payment result and submit the transaction details to the backend.</li>
+        <li class="ok">Generate the fiscal receipt through the <code>/generate-receipt</code> endpoint only after successful payment confirmation.</li>
+      </ol>
+      <p>This ensures that fiscal receipt generation follows the confirmed payment outcome rather than preceding it.</p>
+    </div>
+  </article>
+
+  <article class="ch" id="ch2">
+    <div class="ch-side"><span class="ch-num px">2</span><h3>Handling Interrupted &amp; Uncertain Payment Transactions</h3></div>
+    <div class="ch-body">
+      <span class="lab lab-c">Challenge</span>
+      <p>A particularly critical scenario occurs when a customer’s card is successfully charged, but the application fails to receive or transmit the payment confirmation because of a network interruption, device shutdown, or unexpected application termination.</p>
+      <p>In this situation, the payment may have succeeded while the corresponding order remains pending.</p>
+      <span class="lab lab-s">Solution</span>
+      <p>I implemented a transaction recovery workflow directly within the Transaction Details screen:</p>
+      <ul class="svc one">
+        <li>Preserve pending transactions and their unique <code>orderNumber</code> instead of automatically discarding them.</li>
+        <li>Provide a Fawry Inquiry operation to retrieve the actual payment status using the <code>orderNumber</code> or Fawry reference number (<code>FCRN</code>).</li>
+        <li>Allow the cashier to execute a Void operation when the payment was successful but the transaction should not proceed to fiscal receipt generation.</li>
+      </ul>
+      <p>This gives cashiers a way to investigate and resolve uncertain payment outcomes directly from the POS application.</p>
+    </div>
+  </article>
+
+  <article class="ch" id="ch3">
+    <div class="ch-side"><span class="ch-num px">3</span><h3>Native Android Integration &amp; SDK Compatibility</h3></div>
+    <div class="ch-body">
+      <span class="lab lab-c">Challenge</span>
+      <p>The Fawry POS SDK exposes functionality through native Android libraries and IPC mechanisms. Integrating these capabilities into a React Native application required a reliable bridge between the JavaScript layer and native Android services.</p>
+      <span class="lab lab-s">Solution</span>
+      <p>I developed a dedicated native module, <code>FawryPaymentModule</code>, responsible for:</p>
+      <ul class="svc">
+        <li>Managing communication with the Fawry payment service through IPC.</li>
+        <li>Handling Android context and UI-thread requirements.</li>
+        <li>Managing terminal connection and initialization.</li>
+        <li>Supporting automatic connection and local terminal configuration.</li>
+      </ul>
+      <p>This created a dedicated integration layer between the React Native application and the native payment infrastructure.</p>
+    </div>
+  </article>
+
+  <article class="ch" id="ch4">
+    <div class="ch-side"><span class="ch-num px">4</span><h3>Supporting Dedicated POS Terminals &amp; Standard Android Devices</h3></div>
+    <div class="ch-body">
+      <span class="lab lab-c">Challenge</span>
+      <p>The application needed to run on specialized PAX terminals and ordinary Android phones and tablets.</p>
+      <p>Directly initializing proprietary PAX printer classes or payment services on unsupported devices could result in runtime errors such as <code>ClassNotFoundException</code> and <code>NoClassDefFoundError</code>.</p>
+      <span class="lab lab-s">Solution</span>
+      <p>I separated hardware-specific functionality from the main application workflow through optional native integrations and feature-based availability checks.</p>
+      <ul class="svc">
+        <li>Detect the availability of required hardware drivers before initializing native components.</li>
+        <li>Isolate PAX-specific integrations behind dedicated native modules.</li>
+        <li>Provide alternative workflows for devices without specialized payment hardware.</li>
+        <li>Support cash transactions, digital receipt sharing, and standard printing alternatives on compatible Android devices.</li>
+      </ul>
+      <p>This enabled a shared application codebase to support different Android hardware environments without making proprietary hardware a mandatory dependency.</p>
+      <figure class="ch-fig phone">
+        <a href="assets/projects/esalek/app.webp" target="_blank" rel="noopener noreferrer"><img src="assets/projects/esalek/app.webp" alt="Esalek home screen on a standard Android phone showing the shift summary and quick actions" loading="lazy"></a>
+        <figcaption>Home screen on a standard Android phone</figcaption>
+      </figure>
+    </div>
+  </article>
+
+  <article class="ch" id="ch5">
+    <div class="ch-side"><span class="ch-num px">5</span><h3>Thermal Printing &amp; Arabic Text Rendering</h3></div>
+    <div class="ch-body">
+      <span class="lab lab-c">Challenge</span>
+      <p>Thermal POS printers do not always provide native support for properly shaping and connecting Arabic characters. Printing Arabic receipts directly could result in disconnected characters and incorrect text direction.</p>
+      <span class="lab lab-s">Solution</span>
+      <p>I developed a dedicated <code>PAXPrinterModule</code> for direct communication with PAX thermal printers.</p>
+      <p>The implementation includes a custom Arabic text-processing component, <code>ArabicManager</code>, to handle Arabic character shaping and RTL text rendering before printing.</p>
+      <p>The module also supports fiscal QR code printing, while standard Android devices can use alternative printing and PDF generation workflows.</p>
+    </div>
+  </article>
+</section>
+
+<!-- ============ DECISIONS ============ -->
+<section id="decisions">
+  <div class="tag-h px">DECISIONS</div>
+  <h2 class="t px">Engineering Decisions</h2>
+  <div class="sheet tablewrap">
+    <table class="dtable">
+      <thead><tr><th scope="col">Engineering Decision</th><th scope="col">Reasoning</th><th scope="col">Outcome</th></tr></thead>
+      <tbody>
+        <tr><th scope="row" data-label="Engineering Decision">Order-First Payment Workflow</th><td data-label="Reasoning">Prevent fiscal receipt generation before payment confirmation.</td><td data-label="Outcome">Protects the fiscal transaction sequence from unsuccessful card payments.</td></tr>
+        <tr><th scope="row" data-label="Engineering Decision">Inquiry &amp; Void Operations</th><td data-label="Reasoning">Provide a recovery path for uncertain or completed payments that should not proceed.</td><td data-label="Outcome">Enables transaction investigation and cancellation directly from the terminal.</td></tr>
+        <tr><th scope="row" data-label="Engineering Decision">Native Hardware Abstraction</th><td data-label="Reasoning">Keep proprietary PAX functionality separate from the main application.</td><td data-label="Outcome">Supports dedicated terminals and standard Android devices through one codebase.</td></tr>
+        <tr><th scope="row" data-label="Engineering Decision">Custom Arabic Printing</th><td data-label="Reasoning">Handle Arabic shaping and RTL requirements for thermal receipts.</td><td data-label="Outcome">Produces properly formatted Arabic receipts on supported PAX printers.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ IMPACT ============ -->
+<section id="impact">
+  <div class="tag-h px">IMPACT</div>
+  <h2 class="t px">Results &amp; Business Impact</h2>
+  <div class="sheet impact">
+    <ul class="tick-list">
+      <li><strong>Unified POS Experience:</strong> Combined sales processing, card payments, shift operations, and fiscal receipt generation in one application.</li>
+      <li><strong>Improved Fiscal Workflow:</strong> Ensured that fiscal receipt generation occurs only after successful payment confirmation.</li>
+      <li><strong>Payment Recovery:</strong> Introduced Inquiry and Void workflows to handle uncertain payment outcomes without relying entirely on external support.</li>
+      <li><strong>Broader Device Compatibility:</strong> Enabled the application to operate on dedicated PAX terminals as well as standard Android phones and tablets.</li>
+      <li><strong>Arabic Receipt Support:</strong> Delivered dedicated thermal printing functionality with Arabic text shaping and fiscal QR code support.</li>
+      <li><strong>Simplified Merchant Operations:</strong> Reduced the need for multiple disconnected devices by consolidating key POS capabilities into one platform.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ STACK ============ -->
+<section id="stack">
+  <div class="tag-h px">STACK</div>
+  <h2 class="t px">Technology Stack</h2>
+  <div class="skills">
+    <div class="cart"><h3 class="px">Mobile Application</h3><div><span class="chip">React Native 0.81</span><span class="chip">Expo 54</span><span class="chip">TypeScript</span><span class="chip">Expo Router</span></div></div>
+    <div class="cart"><h3 class="px">Native Android Development</h3><div><span class="chip">Java</span><span class="chip">Kotlin</span><span class="chip">Android AAR Integration</span><span class="chip">Android IPC</span></div></div>
+    <div class="cart"><h3 class="px">Payment &amp; Hardware Integration</h3><div><span class="chip">Fawry POS Retailer SDK</span><span class="chip">PAX DAL Thermal Printer SDK</span><span class="chip">Native Android Hardware Modules</span></div></div>
+    <div class="cart"><h3 class="px">State Management &amp; Data</h3><div><span class="chip">Zustand</span><span class="chip">TanStack React Query</span><span class="chip">Axios</span><span class="chip">Async Storage</span></div></div>
+    <div class="cart wide"><h3 class="px">UI &amp; Printing</h3><div><span class="chip">React Native Reanimated</span><span class="chip">React Native SVG</span><span class="chip">ViewShot</span><span class="chip">QR Code Generation</span><span class="chip">Custom Arabic Text Shaping</span><span class="chip">Expo Print (PDF / Standard Printing Fallback)</span></div></div>
+  </div>
+</section>
+
+<!-- ============ MORE CASE STUDIES ============ -->
+<section id="more-cases">
+  <div class="tag-h px">MORE WORK</div>
+  <div class="sheet" style="padding: clamp(24px, 3.5vw, 40px); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+    <div style="max-width: 600px;">
+      <span class="chip" style="margin-bottom: 12px;">Enterprise Retail Systems · Offline-First</span>
+      <h3 class="px" style="font-size: clamp(20px, 2.5vw, 28px); margin: 6px 0 12px; line-height: 1.3;">Cyrus RMS Offline POS</h3>
+      <p style="margin: 0; color: var(--ink2); font-size: 16px; line-height: 1.6;">An offline-first desktop point-of-sale application with local SQL Server transactions, dependency-aware synchronization, and multi-currency cash reconciliation.</p>
+    </div>
+    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+      <a class="btn" href="cyrus.html">← CYRUS RMS CASE STUDY</a>
+      <a class="btn alt" href="index.html#projects">ALL PROJECTS</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="contact">
+    <h2 class="px">Let’s build something that lasts.</h2>
+    <p>Open to full-time roles and select contracts. Send me a message and I’ll reply within a day.</p>
+    <div class="copy"><span id="emailVal">kareem.mohamed.swd@gmail.com</span><button id="copyBtn" onclick="copyEmail()">COPY EMAIL</button></div>
+    <div class="cl">
+      <a class="btn" href="mailto:kareem.mohamed.swd@gmail.com">EMAIL ME</a>
+      <a class="btn alt" href="https://wa.me/201550552371" target="_blank" rel="noopener noreferrer">WHATSAPP</a>
+      <a class="btn alt" href="https://github.com/kareem-kairossol-io" target="_blank" rel="noopener noreferrer">GITHUB</a>
+      <a class="btn alt" href="https://linkedin.com/in/kareem-mohamed-b3b676261" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
+      <a class="btn dark" href="Kareem_Mohamed_Resume.pdf" target="_blank" rel="noopener noreferrer">RESUME PDF</a>
+    </div>
+  </div>
+</section>
+
+<div id="toast" class="px" role="status"></div>
+
+<footer>© 2026 Kareem Mohamed · Software Engineer · Cairo, Egypt</footer>
+
+<script src="js/esalek.js"></script>
+</body>
+</html>

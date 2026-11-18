@@ -405,32 +405,52 @@
       ],
       d: 'Per-second scooter telemetry goes through Redis so the main database stays safe under fleet load. A vector-based geofencing engine blocks restricted zones. Because digital payments were limited in Algeria, I built a cash-to-digital wallet network with kiosk apps and a settlement portal.'
     },
-    gspos: {
-      n: 'GS POS (Fawry & ETA)',
-      cat: 'FinTech',
-      role: 'Cyrus Technology · Android POS',
+    cyrus: {
+      n: 'Cyrus RMS Offline POS',
+      cat: 'Enterprise',
+      role: 'Cyrus Technology · Lead on architecture',
       featured: true,
       caseStudy: true,
-      img: 'assets/thumbnails/eysalak.png',
-      sum: 'Android POS for PAX terminals with Fawry payments and e-invoice submission to the Egyptian Tax Authority.',
-      tags: ['React Native', 'Fawry SDK', 'ETA', 'PAX'],
+      caseStudyUrl: 'cyrus.html',
+      img: 'assets/thumbnails/rms.png',
+      sum: 'Offline-first desktop POS with dependency-aware data sync, financial integrity, and multi-currency cash reconciliation.',
+      tags: ['Electron', 'React', 'TypeScript', 'SQL Server'],
       scr: [
-        ['1', 'PAX terminal POS'],
-        ['2', 'Card payment flow'],
-        ['4', 'ETA receipt'],
-        ['5', 'Void and audit history']
-      ].map(function (s) {
-        return ['assets/projects/gs/' + s[0] + '.png', s[1]];
-      }),
-      d: 'Integrated the Fawry payment SDK and passed production certification on the first submission. Receipts are sent to the tax authority in real time.'
+        ['assets/projects/cyrus/pos.webp', 'Main sales POS interface with live stock availability'],
+        ['assets/projects/cyrus/sync.webp', 'Dependency-aware data synchronization engine'],
+        ['assets/projects/cyrus/orders.webp', 'Session orders and post-sync payment update workflows'],
+        ['assets/projects/cyrus/session.webp', 'Session details & cash reconciliation by currency'],
+        ['assets/projects/cyrus/report.webp', 'Printable end-of-session financial summary report']
+      ],
+      d: 'Offline-first desktop POS built with Electron, React, TypeScript, and SQL Server. Designed to maintain business continuity during internet outages with transactional local data persistence, dependency-aware sync to the central cloud platform, multi-currency session reconciliation, and automated deployment tooling.'
+    },
+    eysalak: {
+      n: 'Eysalak',
+      cat: 'FinTech',
+      role: 'Cyrus Technology · Android POS & Mobile',
+      featured: true,
+      caseStudy: true,
+      caseStudyUrl: 'esalek.html',
+      img: 'assets/thumbnails/eysalak.png',
+      sum: 'Smart Android POS with Fawry payments, PAX thermal printing, and Egyptian Tax Authority electronic receipts.',
+      tags: ['React Native', 'Fawry SDK', 'ETA E-Receipt', 'PAX'],
+      scr: [
+        ['assets/projects/esalek/app.webp', 'Eysalak mobile home screen: shift summary & quick actions'],
+        ['assets/projects/esalek/admin.webp', 'Eysalak company management & ETA environment integration'],
+        ['assets/projects/gs/1.png', 'PAX terminal POS checkout interface'],
+        ['assets/projects/gs/2.png', 'Fawry card payment flow'],
+        ['assets/projects/gs/4.png', 'ETA-compliant electronic receipt'],
+        ['assets/projects/gs/5.png', 'Void and transaction audit history']
+      ],
+      d: 'Smart Android POS built with React Native and native Android modules (Java/Kotlin) in strategic partnership with Fawry. Unifies sales, shift management, card payments, PAX thermal printing with Arabic text shaping, and ETA fiscal electronic receipts on PAX terminals and standard Android devices.'
     },
     dawlet: {
       n: 'Dawlet El Telawa',
       cat: 'Government',
       role: 'United Media Services · Backend',
       featured: true,
-      caseStudy: true,
       img: 'assets/thumbnails/dawlet-eltelawa.png',
+      link: ['https://dawlataltilawa.clicksegypt.net/', 'Live site'],
       sum: 'National Quran competition platform: 400K+ registrations in its first week.',
       tags: ['Laravel', 'hCaptcha', 'Fingerprinting', 'Cloudflare'],
       scr: [1, 2, 3, 4].map(function (n) {
@@ -441,18 +461,37 @@
       }),
       d: 'Layered fraud defense: request signatures, hCaptcha, IP rate limiting, browser fingerprinting, and scheduled jobs that detect and purge suspicious clusters.'
     },
-    cyrus: {
-      n: 'Cyrus RMS',
-      cat: 'Enterprise',
-      role: 'Cyrus Technology · Lead on architecture',
-      img: 'assets/thumbnails/rms.png',
-      sum: 'Retail platform: cloud admin dashboard plus an offline-first Electron POS.',
-      tags: ['Electron', 'RabbitMQ', 'React', 'SQL Server'],
+    resala: {
+      n: 'Resala Platform',
+      cat: 'FinTech',
+      role: 'United Media Services · Backend',
+      img: 'assets/thumbnails/resala.png',
+      link: ['https://resala.org/', 'Live site'],
+      sum: 'Donation platform with payment gateways and automated tracking for a large Egyptian charity.',
+      tags: ['Laravel', 'Payments', 'Auditing'],
       scr: [
-        ['assets/projects/cyrus-crm/online-version.png', 'Cloud admin dashboard'],
-        ['assets/projects/cyrus-crm/offline-version.png', 'Offline desktop POS']
+        ['assets/projects/resala/1-campaign.webp', 'Campaign portal: Winter donation drive & digital payment channels'],
+        ['assets/projects/resala/2-news.webp', 'Initiatives & impact: National alliance aid convoys & Eid distributions'],
+        ['assets/projects/resala/3-fieldwork.webp', 'Fieldwork & engagement: Volunteer signups, donation actions & photo gallery'],
+        ['assets/projects/resala/4-media.webp', 'Media & programs: Relief campaign videos & official contacts']
       ],
-      d: 'Cashiers complete sales, voids and barcode scans with no internet. Changes queue locally and sync both ways through RabbitMQ when the connection returns.'
+      d: 'Payment gateway integration, recurring donations and automatic receipts, built to handle traffic spikes during national campaigns.'
+    },
+    watchit: {
+      n: 'WatchIT Script Portal',
+      cat: 'Media & Edu',
+      role: 'United Media Services · Backend',
+      img: 'assets/thumbnails/watchit.png',
+      link: ['https://content.watchit.com/', 'Live site'],
+      sum: 'Role-based script evaluation and workflow platform for WatchIT original productions.',
+      tags: ['Laravel', 'RBAC', 'Document Management', 'REST API'],
+      scr: [
+        ['assets/projects/watchit/1-hero.webp', 'Hero: Bring Your Craft to Screen with WATCH IT'],
+        ['assets/projects/watchit/2-how-it-works.webp', 'Application workflow: Profile creation, script submission & tracking'],
+        ['assets/projects/watchit/3-features.webp', 'Creator platform: Original productions, regional reach & IP protection'],
+        ['assets/projects/watchit/4-faqs.webp', 'Evaluation FAQs: Review timelines & submission guidelines']
+      ],
+      d: 'Engineered a role-based script evaluation and management platform for WatchIT original productions, allowing creative teams, directors, and executives to submit, annotate, review, and approve scripts securely.'
     },
     alamein: {
       n: 'Al-Alamein Festival',
@@ -470,8 +509,8 @@
       ],
       d: 'REST APIs serving both a React web app and a Flutter mobile app, built for live event traffic.'
     },
-    instasports: {
-      n: 'InstaSports',
+    matchpass: {
+      n: 'Match Pass',
       cat: 'Enterprise',
       role: 'UMS-backed · Backend',
       img: 'assets/thumbnails/matchpass.png',
@@ -532,34 +571,20 @@
       }),
       d: 'Scraping workers replaced a manual checking team. Alerts reach agents over WebSockets so listings stay within eBay policy.'
     },
-    resala: {
-      n: 'Resala Platform',
-      cat: 'FinTech',
-      role: 'United Media Services · Backend',
-      img: 'assets/thumbnails/resala.png',
-      sum: 'Donation platform with payment gateways and automated tracking for a large Egyptian charity.',
-      tags: ['Laravel', 'Payments', 'Auditing'],
-      scr: [['assets/thumbnails/resala.png', 'Donor portal']],
-      d: 'Payment gateway integration, recurring donations and automatic receipts, built to handle traffic spikes during national campaigns.'
-    },
-    watchit: {
-      n: 'WatchIT Script Portal',
-      cat: 'Media & Edu',
-      role: 'United Media Services · Backend',
-      img: 'assets/thumbnails/watchit.png',
-      sum: 'Role-based script evaluation and workflow platform for WatchIT original productions.',
-      tags: ['Laravel', 'RBAC', 'Document Management', 'REST API'],
-      scr: [['assets/thumbnails/watchit.png', 'WatchIT script evaluation portal']],
-      d: 'Engineered a role-based script evaluation and management platform for WatchIT original productions, allowing creative teams, directors, and executives to submit, annotate, review, and approve scripts securely.'
-    },
     podcast: {
       n: 'UMS Podcast',
       cat: 'Media & Edu',
       role: 'United Media Services · Backend',
       img: 'assets/thumbnails/ums-podcast.png',
+      link: ['https://umspodcast.com/', 'Live site'],
       sum: 'Digital media and audio content platform powering the United Media Services podcast network.',
       tags: ['Laravel', 'REST API', 'Audio Streaming', 'CMS'],
-      scr: [['assets/thumbnails/ums-podcast.png', 'UMS Podcast platform']],
+      scr: [
+        ['assets/projects/ums-podcast/1-homepage-hero.webp', 'Homepage: Featured shows, recent stories & trending episodes'],
+        ['assets/projects/ums-podcast/2-shows-catalog.webp', 'Programs catalog: Full podcast directory & presenters'],
+        ['assets/projects/ums-podcast/3-articles-hub.webp', 'Editorial hub: Featured stories & newsletter subscription'],
+        ['assets/projects/ums-podcast/4-articles-archive.webp', 'Articles archive: Categorized media publications']
+      ],
       d: 'Developed backend services, content management workflows, and high-availability media distribution for the UMS Podcast network.'
     }
   };
