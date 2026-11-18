@@ -832,12 +832,28 @@
       ]
     },
     {
+      title: 'Secondary: Client & Frontend',
+      featured: true,
+      desc: 'Frontend and mobile client applications built to interface seamlessly with backend services.',
+      chips: [
+        { name: 'TypeScript' },
+        { name: 'React' },
+        { name: 'Vue.js' },
+        { name: 'Tailwind CSS' },
+        { name: 'React Native' },
+        { name: 'Electron' },
+        { name: 'Native Android Modules (Java/Kotlin)' }
+      ]
+    },
+    {
       title: 'Cloud, DevOps & CI/CD',
       desc: 'Containerized services, automated deployment pipelines, and high-availability server configuration.',
       chips: [
         { name: 'Docker', primary: true },
         { name: 'GitHub Actions (CI/CD)', primary: true },
         { name: 'Linux (Ubuntu/Debian)', primary: true },
+        { name: 'Google Cloud Services' },
+        { name: 'Firebase' },
         { name: 'Nginx Reverse Proxy' },
         { name: 'Cloudflare CDN & WAF' }
       ]
@@ -862,18 +878,6 @@
         { name: 'SQL Server' },
         { name: 'Redis (Caching & Pub/Sub)', primary: true },
         { name: 'Query Optimization & Indexing' }
-      ]
-    },
-    {
-      title: 'Secondary: Client & Frontend',
-      desc: 'Frontend and mobile client applications built to interface seamlessly with backend services.',
-      chips: [
-        { name: 'TypeScript' },
-        { name: 'React' },
-        { name: 'Vue.js' },
-        { name: 'React Native' },
-        { name: 'Electron' },
-        { name: 'Native Android Modules (Java/Kotlin)' }
       ]
     }
   ];
