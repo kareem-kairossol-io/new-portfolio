@@ -111,3 +111,10 @@
 
 /* spacing for a flow placed directly in a challenge body */
 .ch-body > .flow { margin: 20px 0 26px; }
+
+.nav-in {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}

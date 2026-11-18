@@ -1,6 +1,6 @@
 /* ==========================================================================
    Cyrus RMS Offline POS case study
-   Load order: css/style.css, css/fentec.css?v=1.0.3 (shared layout pieces), css/cyrus.css?v=1.0.3
+   Load order: css/style.css, css/fentec.css?v=1.0.4 (shared layout pieces), css/cyrus.css?v=1.0.4
    ========================================================================== */
 :root { --gold2: #f5b700; }
 
@@ -144,4 +144,11 @@
   .sync-list li { gap: 10px; }
   .decision p { font-size: 14.5px; }
   .cs-title.long { font-size: 21px; }
+}
+
+.nav-in {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
 }

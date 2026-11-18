@@ -1827,4 +1827,8 @@ footer {
     font-size: 12.5px;
     line-height: 1.5;
   }
+  
+  .nav-in .links {
+    width: 100% !important;
+  }
 }

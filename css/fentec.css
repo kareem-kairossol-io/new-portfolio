@@ -438,3 +438,10 @@
 @media (prefers-reduced-motion: reduce) {
   #scooter .ring { animation: none; opacity: 0.6; }
 }
+
+.nav-in {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
