@@ -299,15 +299,12 @@
     new IntersectionObserver(
       function (en) {
         heroVisible = en[0].isIntersecting;
-        $('fab').classList.toggle('show', !heroVisible);
         if (heroVisible) {
           lastFrame = -1;
         }
       },
       { threshold: 0.1 }
     ).observe($('hero'));
-  } else {
-    $('fab').classList.add('show');
   }
 
   /* ==========================================================================
@@ -816,67 +813,100 @@
   /* ==========================================================================
      SKILLS
      ========================================================================== */
-  var SK = {
-    Backend: [
-      'Java',
-      'Spring Boot',
-      'Laravel',
-      'PHP',
-      'REST APIs',
-      'Multi-tenant SaaS',
-      'RBAC',
-      'Queues & jobs',
-      'WebSockets'
-    ],
-    Architecture: [
-      'System design',
-      'High concurrency',
-      'Laravel Octane',
-      'Redis caching',
-      'Offline-first sync',
-      'Modular monolith'
-    ],
-    'Frontend & clients': [
-      'React',
-      'React Native',
-      'Flutter',
-      'TypeScript',
-      'Electron',
-      'WPF / MVVM'
-    ],
-    'Data & infrastructure': [
-      'MySQL',
-      'SQL Server',
-      'Redis',
-      'RabbitMQ',
-      'Docker',
-      'Nginx',
-      'Linux'
-    ],
-    'Payments & integrations': [
-      'Fawry POS SDK',
-      'ETA e-invoicing',
-      'Google Maps',
-      'Google Calendar',
-      'IoT hardware'
-    ]
-  };
+  var SK = [
+    {
+      title: 'Primary Backend Stack',
+      featured: true,
+      desc: 'Extensive production experience building high-concurrency systems, distributed architectures, and robust APIs. Strong Laravel/PHP foundation actively transitioned to Java & Spring Boot over the past year.',
+      chips: [
+        { name: 'Java', primary: true },
+        { name: 'Spring Boot', primary: true },
+        { name: 'Laravel', primary: true },
+        { name: 'PHP 8+', primary: true },
+        { name: 'RESTful APIs', primary: true },
+        { name: 'System Design & High Concurrency', primary: true },
+        { name: 'Multi-tenant SaaS Architecture' },
+        { name: 'Distributed Systems' },
+        { name: 'Queues, Workers & Asynchronous Jobs' },
+        { name: 'WebSockets & Realtime Events' }
+      ]
+    },
+    {
+      title: 'Cloud, DevOps & CI/CD',
+      desc: 'Containerized services, automated deployment pipelines, and high-availability server configuration.',
+      chips: [
+        { name: 'Docker', primary: true },
+        { name: 'GitHub Actions (CI/CD)', primary: true },
+        { name: 'Linux (Ubuntu/Debian)', primary: true },
+        { name: 'Nginx Reverse Proxy' },
+        { name: 'Cloudflare CDN & WAF' }
+      ]
+    },
+    {
+      title: 'Testing & Code Quality',
+      desc: 'Enterprise-grade testing suites, automated regression testing, and strict code reliability standards.',
+      chips: [
+        { name: 'JUnit 5 & Mockito', primary: true },
+        { name: 'PHPUnit & Pest', primary: true },
+        { name: 'Integration Testing', primary: true },
+        { name: 'API Automation & Postman' },
+        { name: 'Static Analysis & Code Quality' }
+      ]
+    },
+    {
+      title: 'Databases & Messaging',
+      desc: 'High-availability data stores, caching layers, and decoupled event processing.',
+      chips: [
+        { name: 'PostgreSQL', primary: true },
+        { name: 'MySQL', primary: true },
+        { name: 'SQL Server' },
+        { name: 'Redis (Caching & Pub/Sub)', primary: true },
+        { name: 'Query Optimization & Indexing' }
+      ]
+    },
+    {
+      title: 'Secondary: Client & Frontend',
+      desc: 'Frontend and mobile client applications built to interface seamlessly with backend services.',
+      chips: [
+        { name: 'TypeScript' },
+        { name: 'React' },
+        { name: 'Vue.js' },
+        { name: 'React Native' },
+        { name: 'Electron' },
+        { name: 'Native Android Modules (Java/Kotlin)' }
+      ]
+    }
+  ];
 
-  $('skillsBox').innerHTML = Object.keys(SK)
-    .map(function (k) {
-      return (
-        '<div class="cart"><h3 class="px">' +
-        k.toUpperCase() +
-        '</h3><div>' +
-        SK[k]
-          .map(function (s) {
-            return '<span class="chip">' + s + '</span>';
-          })
-          .join('') +
-        '</div></div>'
-      );
-    })
-    .join('');
+  $('skillsBox').innerHTML = SK.map(function (c) {
+    return (
+      '<div class="cart' +
+      (c.featured ? ' featured' : '') +
+      '">' +
+      '<div class="cart-head">' +
+      '<h3 class="px">' +
+      c.title.toUpperCase() +
+      '</h3>' +
+      '</div>' +
+      '<p class="cart-desc">' +
+      c.desc +
+      '</p>' +
+      '<div class="cart-chips">' +
+      c.chips
+        .map(function (s) {
+          return (
+            '<span class="chip' +
+            (s.primary ? ' primary' : '') +
+            '">' +
+            s.name +
+            '</span>'
+          );
+        })
+        .join('') +
+      '</div>' +
+      '</div>'
+    );
+  }).join('');
 
   /* ==========================================================================
      INTERACTIONS: cursor, reveals, scroll progress
